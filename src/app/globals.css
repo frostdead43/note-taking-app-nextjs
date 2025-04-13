@@ -21,6 +21,7 @@ body {
   line-height: 1.5;
   /* 5. Improve text rendering */
   -webkit-font-smoothing: antialiased;
+  font-family: "Inter",sans-serif;
 }
 
 /* 6. Improve media defaults */
@@ -64,5 +65,9 @@ a {
 
 button {
   cursor: pointer;
+}
+
+.container {
+  padding-inline: 16px;
 }
 
