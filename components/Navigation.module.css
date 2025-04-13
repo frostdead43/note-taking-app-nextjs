@@ -1,0 +1,25 @@
+.menu-bar ul {
+  padding: 12px 16px;
+  display: flex;
+  align-items: center;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background-color: rgba(243, 245, 248, 1);
+  border-top: 1px solid  rgb(224, 228, 234);
+  box-shadow: 0px -4px 6px 0px rgba(240, 240, 240, 0.6);
+  justify-content: space-around;
+  left: 0;
+
+}
+
+
+.menu-bar li {
+  background-color: white;
+  padding: 4px 22px;
+  border: none;
+}
+
+.menu-bar li:focus {
+  background-color: rgba(235, 241, 255, 1);
+}
