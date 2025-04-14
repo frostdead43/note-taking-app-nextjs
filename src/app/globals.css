@@ -71,3 +71,8 @@ button {
   padding-inline: 16px;
 }
 
+hr {
+  margin-block: 12px;
+  opacity: 0.5;
+}
+
