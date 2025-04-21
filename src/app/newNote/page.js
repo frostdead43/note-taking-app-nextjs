@@ -5,13 +5,12 @@ import styles from './newNote.module.css'
 import { createNote } from '../action'
 import { useActionState, useEffect, useState } from 'react'
 import { createClient } from '@supabase/supabase-js';
+import { supabase } from '../page';
 
 
 
 export default function newNote() {
   const [state,formAction,isPending] = useActionState(createNote,false);
-
- 
 
   return(
     <form action={formAction}> 
@@ -45,7 +44,7 @@ export default function newNote() {
 
         <hr />
 
-        <textarea className= {styles.textarea} name="notes" required placeholder="Start typing your note here…"></textarea>
+        <textarea className= {styles.textarea} name="body" required placeholder="Start typing your note here…"></textarea>
       </div>
     </form>
   )
