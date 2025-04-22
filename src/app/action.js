@@ -1,11 +1,20 @@
 "use server";
 import { supabase } from "./lib/supabaseClient";
 
-console.log(supabase);
+export async function createNote(currentState, formData) {  
+  const title = formData.get("title");
+  const tags = formData.get("tags");
+  const body = formData.get("body");
+  const created_at = formData.get("created_at");
 
+  const formObj = { title, tags, body,created_at };
 
-export async function createNote(currentState,formData) {  
-  const formObj = Object.fromEntries(formData);
-  const { data } = await supabase.from('notes').insert([formObj,]).select();
-  console.log(formObj);
+  const { data, error } = await supabase.from("notes").insert([formObj]);
+
+  if (error) {
+    console.error("Insert error:", error);
+    return { error: true, message: error.message };
+  }
+
+  return { success: true, data };
 }

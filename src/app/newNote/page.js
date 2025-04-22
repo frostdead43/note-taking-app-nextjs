@@ -3,11 +3,7 @@
 import Link from 'next/link'
 import styles from './newNote.module.css'
 import { createNote } from '../action'
-import { useActionState, useEffect, useState } from 'react'
-import { createClient } from '@supabase/supabase-js';
-import { supabase } from '../page';
-
-
+import { useActionState } from 'react'
 
 export default function newNote() {
   const [state,formAction,isPending] = useActionState(createNote,false);
@@ -15,7 +11,7 @@ export default function newNote() {
   return(
     <form action={formAction}> 
       <div className="container">
-        <button>asdsajdashj</button>
+        <button type='submit'>asdsajdashj</button>
         <div className={styles["newnote-area"]}>
           <div className={styles["newnote-header"]}>
             <div>
@@ -37,8 +33,7 @@ export default function newNote() {
           <div className={styles["note-input"]}>
             <img src="/images/clock-icon.svg"/>
             <h6 className={styles["h6"]}>Last edited</h6>
-            <input className={styles["asd"]} type="text" disabled  placeholder="Not yet saved" />
-            <h2>{state}</h2>
+            <input className={styles["asd"]} type="text" name='created_at' disabled  placeholder="Not yet saved" />
           </div>
         </div>
 
