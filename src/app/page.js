@@ -1,8 +1,8 @@
 "use client";
 import { useEffect, useState } from "react";
 import "./page.css"
-import Link from "next/link";
 import { supabase } from "./lib/supabaseClient";
+import Link from "next/link";
 
 export default function Home() {
 const [isEmpty,setIsEmpty] = useState(true);
