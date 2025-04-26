@@ -1,5 +1,5 @@
 "use client";
-import { use, useEffect, useState } from "react";
+import { use, useEffect, useRef, useState } from "react";
 import { supabase } from "../../lib/supabaseClient";
 import "./detail.css";
 import { redirect } from "next/navigation";
@@ -13,6 +13,8 @@ export default function Page({ params }) {
   const [noteDetails, setNoteDetails] = useState(null);
   const [edit, setEdit] = useState("");
   const [titleEdit,setTitleEdit] = useState("");
+  const dialogRef = useRef(null);
+  const archiveRef = useRef(null);
 
 
   useEffect(() => {
@@ -39,6 +41,21 @@ export default function Page({ params }) {
     setTitleEdit(e.target.value);
   }
 
+  function handleOpenModal() {
+    dialogRef.current.showModal();
+  }
+  function handleCloseModal() {
+    dialogRef.current.close();
+  }
+
+  function  handleOpenArchiveModal()  {
+    archiveRef.current.showModal();
+  }
+
+  function handleCloseArchiveModal() {
+    archiveRef.current.close();
+  }
+
   async function handleSave(e) {
     e.preventDefault();
     const { data, error } = await supabase.from("notes").update({ title: titleEdit, body: edit}).eq("id", id).select();
@@ -51,7 +68,32 @@ export default function Page({ params }) {
     }
   }
 
+  async function handleDelete(id){
+    const { error } = await supabase.from('notes').delete().eq('id', id);
+    if(error){
+      console.error(error)
+    }else{
+      redirect("/");
+    }
+  }
+
+  async function handleArchive(id) {
+    const { error } = await supabase
+      .from('notes')
+      .update({ archived: true })
+      .eq('id', id);
+  
+    if (error) {
+      console.error('Arşive gönderme hatası:', error);
+    } else {
+      console.log('Not başarıyla arşive gönderildi!');
+      redirect("/"); // İstersen arşiv sayfasına da yönlendirebilirsin
+    }
+  }
+  
+
   return (
+    <>
     <form onSubmit={handleSave}>
       <div className="detail-container">
         <div className="menu-bar">
@@ -59,8 +101,8 @@ export default function Page({ params }) {
            <Link href={"/"}><button type="button">Go Back</button></Link>
           </div>
           <div className="flex">
-            <img src="../images/delete-icon.svg" />
-            <img src="../images/archive-icon.svg" />
+            <img onClick={handleOpenModal} src="../images/delete-icon.svg" />
+            <img onClick={handleOpenArchiveModal} src="../images/archive-icon.svg" />
             <Link href={"/"}><button type="button">Cancel</button></Link>
             <button type="submit" className="save-btn">Save Note</button>
           </div>
@@ -86,5 +128,22 @@ export default function Page({ params }) {
         </div>
       </div>
     </form>
+    <dialog ref={dialogRef}>
+      <h3>Delete Note</h3>
+      <p>Are you sure you want to permanently delete this note? This action cannot be undone.</p>
+      <div className="modal-buttons">
+        <button onClick={handleCloseModal}>Cancel</button>
+        <button onClick={()=> handleDelete(id)}>Delete Note</button>
+      </div>
+    </dialog>
+    <dialog ref={archiveRef}>
+        <h3>Archive Note</h3>
+        <p>Are you sure you want to archive this note? You can find it in the Archived Notes section and restore it anytime.</p>
+        <div className="modal-buttons">
+          <button onClick={handleCloseArchiveModal}>Cancel</button>
+          <button style={{background:"rgba(51, 92, 255, 1)"}} className="archive-modal-button">Archive Notes</button>
+        </div>
+    </dialog>
+  </>
   );
 }
