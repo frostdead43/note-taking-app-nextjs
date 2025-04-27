@@ -22,3 +22,16 @@
 .menu-bar li:focus {
   background-color: rgba(235, 241, 255, 1);
 }
+
+/* .menu-bar li:focus:not(.archive-btn li) svg path {
+  fill: rgba(51, 92, 255, 1);
+}  */
+
+
+.archive-btn li:focus svg path  {
+  stroke: rgb(248, 248, 248);
+  fill: #fff;
+}
+
+
+

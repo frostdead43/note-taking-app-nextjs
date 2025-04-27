@@ -9,7 +9,7 @@ import Link from "next/link";
 export default function Page({ params }) {
   const unwrappedParams = use(params);
   const { id } = unwrappedParams;
-
+  
   const [noteDetails, setNoteDetails] = useState(null);
   const [edit, setEdit] = useState("");
   const [titleEdit,setTitleEdit] = useState("");
@@ -72,22 +72,19 @@ export default function Page({ params }) {
     const { error } = await supabase.from('notes').delete().eq('id', id);
     if(error){
       console.error(error)
-    }else{
+    } else{
       redirect("/");
     }
   }
 
   async function handleArchive(id) {
-    const { error } = await supabase
-      .from('notes')
-      .update({ archived: true })
-      .eq('id', id);
+    const { error } = await supabase.from('notes').update({ archived: true }).eq('id', id);
   
     if (error) {
       console.error('Arşive gönderme hatası:', error);
     } else {
       console.log('Not başarıyla arşive gönderildi!');
-      redirect("/"); // İstersen arşiv sayfasına da yönlendirebilirsin
+      redirect("/");
     }
   }
   
@@ -141,7 +138,7 @@ export default function Page({ params }) {
         <p>Are you sure you want to archive this note? You can find it in the Archived Notes section and restore it anytime.</p>
         <div className="modal-buttons">
           <button onClick={handleCloseArchiveModal}>Cancel</button>
-          <button style={{background:"rgba(51, 92, 255, 1)"}} className="archive-modal-button">Archive Notes</button>
+          <button onClick={()=> handleArchive(id)} style={{background:"rgba(51, 92, 255, 1)"}} className="archive-modal-button">Archive Notes</button>
         </div>
     </dialog>
   </>

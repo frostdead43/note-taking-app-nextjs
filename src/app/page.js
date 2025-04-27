@@ -1,8 +1,8 @@
 "use client";
 import { useEffect, useState } from "react";
 import "./page.css"
-import { supabase } from "./lib/supabaseClient";
 import Link from "next/link";
+import { supabase } from "./lib/supabaseClient";
 
 export default function Home() {
 const [isEmpty,setIsEmpty] = useState(true);
@@ -10,7 +10,7 @@ const [notes,setNotes] = useState([]);
 
 useEffect(()=>{
   async function getData() {
-    const { data } = await supabase.from('notes').select("*");
+    const { data } = await supabase.from('notes').select("*").eq('archived', false);
     setNotes(data);
   }
 
