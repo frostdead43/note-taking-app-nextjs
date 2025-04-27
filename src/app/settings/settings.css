@@ -1,0 +1,108 @@
+.dark-mode {
+  background-color: rgba(14, 18, 27, 1);
+  div {
+    background-color: rgba(14, 18, 27, 1);
+    color: white;
+  }
+  h1,h2,h3,h4,h5,h6, p, button, input {
+    color: white;
+  }
+  header {
+    background-color: rgba(35, 37, 48, 1);
+  }
+
+  .menu-bar  {
+    background-color: rgba(14, 18, 27, 1);
+    box-shadow: 0px -5px 6px 0px rgba(0, 0, 0, 0.5);
+    border-top: none;
+    button {
+      background-color: rgba(14, 18, 27, 1);
+    }
+  }
+
+  .tag > h2,h3,h4,h5,h6 {
+    color: white;
+  }
+
+  hr {
+    color: rgba(35, 37, 48, 0.4);
+  }
+
+  .sidebar-area h5 {
+    background-color: rgba(35, 37, 48, 1);
+    color: white;
+  }
+
+  .search-area h5 {
+    background-color: rgba(35, 37, 48, 1);
+    color: white;
+  }
+
+  .buttons {
+    background-color: rgba(35, 37, 48, 1);
+  }
+
+  .buttons button {
+    background-color: transparent;
+  }
+
+  .new-note-body input {
+    background-color: transparent;
+    color: white;
+  }
+
+  .new-note-body input::placeholder {
+    color: white;
+  }
+
+  .note-input h6, input {
+    color: rgba(202, 207, 216, 1);
+  }
+
+  .note-flex h5 {
+    background-color: transparent;
+
+  }
+
+  textarea {
+    background-color: transparent;
+    color: white;
+  }
+  
+  .note-flex button {
+    background-color: transparent;
+    color: rgba(51, 92, 255, 1);
+  }
+
+  .archive-area h5 {
+    background-color: rgba(82, 88, 102, 1);
+  }
+
+  .archive h6 {
+    background-color: rgba(82, 88, 102, 1);
+  }
+
+  dialog {
+    background-color: rgba(43, 48, 59, 1);
+    box-shadow: 0px 28px 22px 0px;
+
+  }
+
+  dialog p {
+    color: rgba(224, 228, 234, 1);
+  }
+
+  .modal-buttons {
+    background-color: transparent;
+  }
+
+  .modal-buttons button:nth-child(1) {
+    background-color: rgba(113, 119, 132, 1);
+    color: rgba(224, 228, 234, 1);
+  }
+
+  .modal-buttons button:nth-child(2) {
+    color: white;
+  }
+
+}

@@ -49,7 +49,7 @@ export default function Page({ params }) {
       console.error('Arşive gönderme hatası:', error);
     } else {
       console.log('Not başarıyla arşivden çıkarıldı!');
-      redirect("/");
+      redirect("/archive");
     }
   }
 
@@ -67,17 +67,17 @@ export default function Page({ params }) {
         <div className="detail-container">
           <div className="menu-bar">
             <div>
-              <Link href={"/"}><button type="button">Go Back</button></Link>
+              <Link href={"/archive"}><button type="button">Go Back</button></Link>
             </div>
             <div className="flex">
               <img onClick={handleOpenModal} src="../images/delete-icon.svg" />
               <img onClick={handleOpenArchiveModal} src="../images/archive-icon.svg" />
-              <Link href={"/"}><button type="button">Cancel</button></Link>
+              <Link href={"/archive"}><button type="button">Cancel</button></Link>
               <button type="submit" className="save-btn">Save Note</button>
             </div>
           </div>
-          <div className="body">
-            <input className="title-input" type="text" name="title"  ></input>
+          <div className="note-section">
+            <input disabled defaultValue={archiveDetail?.title} className="title-input" type="text" name="title"  ></input>
             <div className="new-note-body">
               <div className="note-input">
                 <img src="../images/tag-mini.svg" />
@@ -92,7 +92,7 @@ export default function Page({ params }) {
             </div>
             <hr />
             <div className="asd">
-              <textarea disabled></textarea>
+              <textarea defaultValue={archiveDetail?.body} disabled></textarea>
             </div>
           </div>
         </div>
@@ -106,8 +106,8 @@ export default function Page({ params }) {
         </div>
       </dialog>
       <dialog ref={archiveRef}>
-        <h3>Archive Note</h3>
-        <p>Are you sure you want to archive this note? You can find it in the Archived Notes section and restore it anytime.</p>
+        <h3>Restore Note</h3>
+        <p>Are you sure you want to restore this note? You can find it and archive it anytime.</p>
         <div className="modal-buttons">
           <button onClick={handleCloseArchiveModal}>Cancel</button>
           <button onClick={() => handleArchive(id)} style={{ background: "rgba(51, 92, 255, 1)" }} className="archive-modal-button">Archive Notes</button>
