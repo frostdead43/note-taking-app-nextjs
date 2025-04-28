@@ -24,13 +24,11 @@ export default function Search() {
     console.log(e.target.value);
   }
 
-  const lowerSearch = search.toLocaleLowerCase("tr");
-
+    const lowerSearch = search.toLocaleLowerCase("tr");
     const filterSearch = searchNotes.filter(x => {
       const find = 
         x.title.toLocaleLowerCase("tr").includes(lowerSearch) ||
         x.tags.toLocaleLowerCase("tr").includes(lowerSearch)
-
       console.log(find);
       return find;
     });
@@ -46,14 +44,17 @@ export default function Search() {
       <p>
         All notes matching <span>{search}</span> are displayed below.
       </p>
+      
       <div className="search">
         {filterSearch.length > 0 ? (
           filterSearch.map(x=> (
-            <div>
-              <h3>{x.title}</h3>
-              <h5>{x.tags}</h5>
-              <h6>{x.created_at}</h6>
-            </div>
+            <Link href={`/notes/${x.id}`}>
+              <div>
+                <h3>{x.title}</h3>
+                <h5>{x.tags}</h5>
+                <h6>{x.created_at}</h6>
+              </div>
+            </Link>
           ))
         ):(
           <h5 className="notFound-text">No notes match your search. Try a different keyword or create a new note.</h5>

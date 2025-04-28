@@ -1,0 +1,25 @@
+.container h2 {
+  color:rgba(14, 18, 27, 1);
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 120%;
+  letter-spacing: -0.5px;
+  margin-bottom: 26px;
+}
+
+.tags-area {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 31px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid rgba(224, 228, 234, 1);
+}
+
+.tag-name h6 {
+  color: rgba(43, 48, 59, 1);
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 120%;
+  letter-spacing: -0.2px;
+}
