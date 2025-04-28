@@ -26,13 +26,14 @@ export default function Search() {
 
   const lowerSearch = search.toLocaleLowerCase("tr");
 
-  const filterSearch = searchNotes.filter(x => {
-    const find = x.title.toLocaleLowerCase("tr").includes(lowerSearch) || x.tags.toLocaleLowerCase("tr").includes(lowerSearch) || x.created_at.toLocaleLowerCase("tr").includes(lowerSearch);
-  
-    console.log(find);
-    return find;
-  });
+    const filterSearch = searchNotes.filter(x => {
+      const find = 
+        x.title.toLocaleLowerCase("tr").includes(lowerSearch) ||
+        x.tags.toLocaleLowerCase("tr").includes(lowerSearch)
 
+      console.log(find);
+      return find;
+    });
 
  
 
