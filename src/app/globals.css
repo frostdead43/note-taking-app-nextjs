@@ -63,6 +63,10 @@ a {
   text-decoration: none;
 }
 
+a:visited {
+  color: inherit;
+}
+
 button {
   cursor: pointer;
 }
@@ -76,4 +80,5 @@ hr {
   margin-block: 12px;
   opacity: 0.5;
 }
+
 
