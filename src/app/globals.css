@@ -104,7 +104,7 @@ hr {
   opacity: 0.5;
 }
 
-.dark-theme {
+ .dark-theme {
   background-color: rgba(14, 18, 27, 1);
   div {
     background-color: rgba(14, 18, 27, 1);
@@ -138,6 +138,10 @@ hr {
     }
     li {
       background-color: rgba(14, 18, 27, 1);
+    }
+
+    svg {
+      fill: white;
     }
   }
 

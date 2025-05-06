@@ -65,7 +65,7 @@ export default function Page({ params }) {
     <>
       <form >
         <div className="detail-container">
-          <div className="menu-bar">
+          <div className="menu-top-bar">
             <div>
               <Link href={"/archive"}><button type="button">Go Back</button></Link>
             </div>

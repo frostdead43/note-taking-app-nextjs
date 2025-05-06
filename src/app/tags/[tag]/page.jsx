@@ -3,7 +3,7 @@ import Link from "next/link";
 import {use, useEffect, useState } from "react";
 import { supabase } from "../../lib/supabaseClient";
 import "./tagDetail.css";
-import "../globals.css"
+import './global.css';
 
 export default function Page({ params }) {
   const unwrappedTagParams = use(params);
