@@ -1,9 +1,9 @@
 import Link from "next/link"
-import styles from "./Navigation.module.css"
+import styles from "./Navigation.css"
 
 export default function Navigation() {
   return(
-    <nav className={styles["menu-bar"]}>
+    <nav className="menu-bar">
       <ul>
         <Link href="/">
           <li tabIndex = "0"> 

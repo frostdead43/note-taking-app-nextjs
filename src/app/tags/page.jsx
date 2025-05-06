@@ -25,8 +25,8 @@ export default function Tags() {
     <div className="container">
       <h2>Tags</h2>
       {searchTags.map(tag=>(
-        <Link href={`/tags/${tag}`}>
-          <div className="tags-area" key={tag.tags}>
+        <Link key={tag.tags} href={`/tags/${tag}`}>
+          <div className="tags-area">
             <img src="./images/tag-icon.svg"/>
             <div className="tag-name">
             <h6>{tag}</h6>

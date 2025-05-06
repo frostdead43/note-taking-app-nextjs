@@ -26,8 +26,8 @@ export default function Page({ params }) {
       <h2>Notes Tagged: <span className="black">{tag}</span></h2>
       <p>All notes with the <span className="black">"{tag}"</span> tag are shown here.</p>
       {tagDetail?.map(x => (
-        <Link href={`/notes/${x.id}`}>
-      <div key={x.title} className="new-notes">
+        <Link key={x.title} href={`/notes/${x.id}`}>
+      <div className="new-notes">
         <h3>{x?.title}</h3>
         <h5>{x?.tags}</h5>
       </div>

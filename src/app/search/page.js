@@ -48,7 +48,7 @@ export default function Search() {
       <div className="search">
         {filterSearch.length > 0 ? (
           filterSearch.map(x=> (
-            <Link href={`/notes/${x.id}`}>
+            <Link key={x.id} href={`/notes/${x.id}`}>
               <div>
                 <h3>{x.title}</h3>
                 <h5>{x.tags}</h5>

@@ -30,8 +30,8 @@ export default function Archive() {
       <h2>Archived Notes</h2>
       <p>All your archived notes are stored here. You can restore or delete them anytime.</p>
       {archivedNotes.map(x=> (
-        <Link href={`/archive/${x.id}`}>
-          <div key={x.id} className="new-notes">
+        <Link key={x.id} href={`/archive/${x.id}`}>
+          <div className="new-notes">
             <h3>{x.title}</h3>
             <h5>{x.tags}</h5>
             <h6>{x.created_at}</h6>

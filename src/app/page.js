@@ -40,13 +40,13 @@ console.log(notes);
         </div>
       ) : (
         notes?.map(x => (
-          <Link href={`/notes/${x.id}`}>
-          <div key={x.id} className="new-notes">
-            <h3>{x.title}</h3>
-            <h5>{x.tags}</h5>
-            <h6>{x.created_at}</h6>
-            <hr />
-          </div>
+          <Link key={x.id} href={`/notes/${x.id}`}>
+            <div className="new-notes">
+              <h3>{x.title}</h3>
+              <h5>{x.tags}</h5>
+              <h6>{x.created_at}</h6>
+              <hr />
+            </div>
           </Link>
         ))
       )}
