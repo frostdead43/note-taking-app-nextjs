@@ -1,5 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
+import "../globals.css"
 import "./search.css"
 import Link from "next/link";
 import { supabase } from "../lib/supabaseClient";

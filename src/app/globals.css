@@ -96,6 +96,7 @@ button {
 .container {
   padding-inline: 16px;
   margin-top: 20px;
+  margin-bottom: 100px;
 }
 
 hr {
@@ -109,19 +110,23 @@ hr {
     background-color: rgba(14, 18, 27, 1);
     color: white;
   }
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6,
-  p,
-  button,
+  h1,h2,h3,h4,h5,h6,p,button,
   input {
     color: white;
   }
   header {
     background-color: rgba(35, 37, 48, 1);
+  }
+
+  input {
+    background-color: white;
+  }
+
+  .body {
+    input {
+      background-color: transparent;
+      color: white;
+    }
   }
 
   .menu-bar {
@@ -136,11 +141,7 @@ hr {
     }
   }
 
-  .tag > h2,
-  h3,
-  h4,
-  h5,
-  h6 {
+  .tag > h2,h3,h4,h5,h6 {
     color: white;
   }
 
@@ -148,14 +149,32 @@ hr {
     color: rgba(35, 37, 48, 0.4);
   }
 
+  .search-area p {
+    color: rgba(202, 207, 216, 1);
+  }
+  
+
   .sidebar-area h5 {
     background-color: rgba(35, 37, 48, 1);
+    color: white;
+  }
+
+  .search-area h2{
     color: white;
   }
 
   .search-area h5 {
     background-color: rgba(35, 37, 48, 1);
     color: white;
+  }
+
+  .search h3 {
+    color: white;
+  }
+
+  .search h6 {
+    color:rgba(224, 228, 234, 1);
+
   }
 
   .buttons {
@@ -173,6 +192,19 @@ hr {
 
   .new-note-body input::placeholder {
     color: white;
+  }
+
+  .new-notes h3 {
+    color: white;
+  }
+  
+  .new-notes h5{
+    color: white;
+    background-color: rgba(43, 48, 59, 1);
+  }
+
+  .new-notes h6 {
+    color: rgba(224, 228, 234, 1);
   }
 
   .note-input h6,
@@ -222,5 +254,33 @@ hr {
 
   .modal-buttons button:nth-child(2) {
     color: white;
+  }
+
+  .container h2 {
+    color: white;
+  }
+  .tag-name h6{
+    color: white;
+  }
+
+  .note-section input {
+    background-color: transparent;
+    color: white;
+  }
+
+  .font-flex h3{
+    color: white;
+  }
+
+  .font-flex p{
+    color: white;
+  }
+
+  .font-area p {
+    color: white;
+  }
+
+  .password-container div>h2 {
+    background-color: transparent;
   }
 }

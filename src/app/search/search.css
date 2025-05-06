@@ -45,6 +45,7 @@
   font-weight: 600;
   line-height: 19.2px;
   letter-spacing: -0.30000001192092896px;
+  margin-top: 8px;
 }
 
 .search h5 {
@@ -78,3 +79,4 @@
   letter-spacing: -0.20000000298023224px;
   border-radius: 8px;
 }
+
