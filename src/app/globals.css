@@ -284,7 +284,25 @@ hr {
     color: white;
   }
 
-  .password-container div>h2 {
+  .password-container input {
     background-color: transparent;
+  }
+
+  .password-container h6 {
+    color: white;
+  }
+
+  .password-container span {
+    color: rgba(153, 160, 174, 1);
+  }
+
+  .tag-container h2 {
+    color:  rgba(153, 160, 174, 1);
+  }
+  .tag-container span {
+    color: white;
+  }
+  .tag-container p {
+    color: rgba(202, 207, 216, 1);
   }
 }
