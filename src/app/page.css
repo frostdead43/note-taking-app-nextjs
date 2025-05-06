@@ -1,6 +1,5 @@
-
 h2 {
-  color:rgb(0, 71, 238);
+  color: rgb(0, 71, 238);
   font-weight: 700;
   font-size: 24px;
   line-height: 120%;
@@ -22,11 +21,11 @@ h2 {
   background-color: rgba(243, 245, 248, 1);
   border: 1px solid rgba(224, 228, 234, 1);
   p {
-  color: rgba(14, 18, 27, 1);
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 130%;
-  letter-spacing: -0.2px;
+    color: rgba(14, 18, 27, 1);
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 130%;
+    letter-spacing: -0.2px;
   }
 }
 
@@ -54,3 +53,7 @@ h2 {
   letter-spacing: -0.20000000298023224px;
 }
 
+.main-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}

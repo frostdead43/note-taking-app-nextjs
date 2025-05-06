@@ -1,5 +1,5 @@
-.container h2 {
-  color:rgba(14, 18, 27, 1);
+.tags-container h2 {
+  color: rgba(14, 18, 27, 1);
   font-weight: 700;
   font-size: 24px;
   line-height: 120%;
@@ -22,4 +22,9 @@
   font-size: 14px;
   line-height: 120%;
   letter-spacing: -0.2px;
+}
+
+.tags-container {
+  padding-inline: 16px;
+  margin-top: 20px;
 }

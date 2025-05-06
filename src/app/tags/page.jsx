@@ -6,35 +6,35 @@ import { supabase } from "../lib/supabaseClient";
 
 export default function Tags() {
 
-  const [searchTags,setSearchTags]= useState([]);
-  const [tags,setTags] = useState("");
+  const [searchTags, setSearchTags] = useState([]);
+  const [tags, setTags] = useState("");
 
-  useEffect(()=>{
+  useEffect(() => {
     async function getTagsData() {
       const { data: tags } = await supabase.from('notes').select("tags");
-      const tagsArray = tags.flatMap(note => note.tags); 
-      const uniqueTags = [...new Set(tagsArray)]; 
+      const tagsArray = tags.flatMap(note => note.tags);
+      const uniqueTags = [...new Set(tagsArray)];
       setSearchTags(uniqueTags);
       console.log(uniqueTags);
     }
     getTagsData();
-  },[]);
+  }, []);
 
-  return(
+  return (
     <>
-    <div className="container">
-      <h2>Tags</h2>
-      {searchTags.map(tag=>(
-        <Link href={`/tags/${tag}`}>
-          <div className="tags-area" key={tag.tags}>
-            <img src="./images/tag-icon.svg"/>
-            <div className="tag-name">
-            <h6>{tag}</h6>
+      <div className="tags-container">
+        <h2>Tags</h2>
+        {searchTags.map(tag => (
+          <Link href={`/tags/${tag}`}>
+            <div className="tags-area" key={tag.tags}>
+              <img src="./images/tag-icon.svg" />
+              <div className="tag-name">
+                <h6>{tag}</h6>
+              </div>
             </div>
-          </div>
-        </Link>
-      ))}
-    </div>
+          </Link>
+        ))}
+      </div>
     </>
   )
 }
