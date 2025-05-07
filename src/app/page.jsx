@@ -7,6 +7,7 @@ import { supabase } from "./lib/supabaseClient";
 import Tags from "./tags/page";
 import { NavigationDesktop } from "@/components/Navigation";
 import Header, { HeaderMobile } from "@/components/Header";
+import { filterNotesBySearch } from "./lib/filterNotes";
 
 
 
@@ -20,6 +21,7 @@ export default function Home() {
   const [notes, setNotes] = useState([]);
   const [screenSize, setScreenSize] = useState(0);
   const [isMobile, setIsMobile] = useState(false);
+  const [search, setSearch] = useState('');
 
 
   useEffect(() => {
@@ -57,6 +59,7 @@ export default function Home() {
   }, []);
 
 
+  const filteredNotes = filterNotesBySearch(notes, search);
 
 
   return (
@@ -64,7 +67,7 @@ export default function Home() {
       <div className={isMobile ? "container" : ""}>
         <div className="header-2">
           <HeaderMobile />
-
+          <input type="text" name="search" placeholder="Search..." onChange={e => setSearch(e.target.value)} value={search} />
 
 
 
@@ -75,7 +78,7 @@ export default function Home() {
               <p>You don’t have any notes yet. Start a new note to capture your thoughts and ideas.</p>
             </div>
           ) : (
-            notes?.map(x => (
+            filteredNotes?.map(x => (
               <Link key={x.id} href={`/notes/${x.id}`}>
                 <div className="new-notes">
                   <h3>{x.title}</h3>

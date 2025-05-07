@@ -4,6 +4,7 @@ import "../globals.css"
 import "./search.css"
 import Link from "next/link";
 import { supabase } from "../lib/supabaseClient";
+import { filterNotesBySearch } from "../lib/filterNotes";
 
 
 export default function Search() {
@@ -11,6 +12,7 @@ export default function Search() {
   const [searchNotes, setSearchNotes] = useState([]);
   const [search, setSearch] = useState('');
 
+  const filterSearch = filterNotesBySearch(searchNotes, search);
 
   useEffect(() => {
     async function getSearchData() {
@@ -27,14 +29,14 @@ export default function Search() {
     console.log(e.target.value);
   }
 
-  const lowerSearch = search.toLocaleLowerCase("tr");
-  const filterSearch = searchNotes.filter(x => {
-    const find =
-      x.title.toLocaleLowerCase("tr").includes(lowerSearch) ||
-      x.tags.toLocaleLowerCase("tr").includes(lowerSearch)
-    console.log(find);
-    return find;
-  });
+  // const lowerSearch = search.toLocaleLowerCase("tr");
+  // const filterSearch = searchNotes.filter(x => {
+  //   const find =
+  //     x.title.toLocaleLowerCase("tr").includes(lowerSearch) ||
+  //     x.tags.toLocaleLowerCase("tr").includes(lowerSearch)
+  //   console.log(find);
+  //   return find;
+  // });
 
 
 
