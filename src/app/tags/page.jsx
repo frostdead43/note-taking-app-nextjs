@@ -1,11 +1,13 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import "./tags.css"
 import Link from "next/link";
 import { supabase } from "../lib/supabaseClient";
+import { ScreenSize } from "../page";
+
 
 export default function Tags() {
-
+  const screenSize = useContext(ScreenSize);
   const [searchTags, setSearchTags] = useState([]);
   const [tags, setTags] = useState("");
 
@@ -22,19 +24,19 @@ export default function Tags() {
 
   return (
     <>
-    <div className="container">
-      <h2>Tags</h2>
-      {searchTags.map(tag=>(
-        <Link key={tag.tags} href={`/tags/${tag}`}>
-          <div className="tags-area">
-            <img src="./images/tag-icon.svg"/>
-            <div className="tag-name">
-            <h6>{tag}</h6>
+      <div className="tags-detail-container">
+        <h2 className={screenSize > 768 ? "tags-title" : ""}>Tags</h2>
+        {searchTags.map(tag => (
+          <Link key={tag.tags} href={`/tags/${tag}`}>
+            <div className={screenSize > 768 ? "tags" : "tags-area"}>
+              <img src="./images/tag-icon.svg" />
+              <div className="tag-name">
+                <h6>{tag}</h6>
+              </div>
             </div>
-          </div>
-        </Link>
-      ))}
-    </div>
+          </Link>
+        ))}
+      </div>
     </>
   )
 }

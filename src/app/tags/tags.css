@@ -1,10 +1,19 @@
-.tags-container h2 {
+.tags-detail-container h2 {
   color: rgba(14, 18, 27, 1);
   font-weight: 700;
   font-size: 24px;
   line-height: 120%;
   letter-spacing: -0.5px;
   margin-bottom: 26px;
+}
+
+.tags-detail-container .tags-title {
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 120%;
+  letter-spacing: -0.2px;
+  color: #717784;
+  margin-block: 8px;
 }
 
 .tags-area {
@@ -14,6 +23,15 @@
   margin-bottom: 31px;
   padding-bottom: 15px;
   border-bottom: 1px solid rgba(224, 228, 234, 1);
+}
+
+.tags {
+  border-bottom: none;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 4px;
+  padding-block: 10px;
 }
 
 .tag-name h6 {

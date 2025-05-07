@@ -104,13 +104,20 @@ hr {
   opacity: 0.5;
 }
 
- .dark-theme {
+.dark-theme {
   background-color: rgba(14, 18, 27, 1);
   div {
     background-color: rgba(14, 18, 27, 1);
     color: white;
   }
-  h1,h2,h3,h4,h5,h6,p,button,
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  p,
+  button,
   input {
     color: white;
   }
@@ -145,7 +152,11 @@ hr {
     }
   }
 
-  .tag > h2,h3,h4,h5,h6 {
+  .tag > h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     color: white;
   }
 
@@ -156,14 +167,13 @@ hr {
   .search-area p {
     color: rgba(202, 207, 216, 1);
   }
-  
 
   .sidebar-area h5 {
     background-color: rgba(35, 37, 48, 1);
     color: white;
   }
 
-  .search-area h2{
+  .search-area h2 {
     color: white;
   }
 
@@ -177,8 +187,7 @@ hr {
   }
 
   .search h6 {
-    color:rgba(224, 228, 234, 1);
-
+    color: rgba(224, 228, 234, 1);
   }
 
   .buttons {
@@ -201,8 +210,8 @@ hr {
   .new-notes h3 {
     color: white;
   }
-  
-  .new-notes h5{
+
+  .new-notes h5 {
     color: white;
     background-color: rgba(43, 48, 59, 1);
   }
@@ -263,7 +272,7 @@ hr {
   .container h2 {
     color: white;
   }
-  .tag-name h6{
+  .tag-name h6 {
     color: white;
   }
 
@@ -272,11 +281,11 @@ hr {
     color: white;
   }
 
-  .font-flex h3{
+  .font-flex h3 {
     color: white;
   }
 
-  .font-flex p{
+  .font-flex p {
     color: white;
   }
 
@@ -297,7 +306,7 @@ hr {
   }
 
   .tag-container h2 {
-    color:  rgba(153, 160, 174, 1);
+    color: rgba(153, 160, 174, 1);
   }
   .tag-container span {
     color: white;
@@ -305,4 +314,18 @@ hr {
   .tag-container p {
     color: rgba(202, 207, 216, 1);
   }
+
+  .header h2 {
+    color: #fff;
+    font-family: "Pacifico", serif;
+    font-size: 23px;
+    font-weight: 400;
+    line-height: 40.39px;
+    letter-spacing: -0.02em;
+  }
+}
+
+html,
+body {
+  height: 100%;
 }
