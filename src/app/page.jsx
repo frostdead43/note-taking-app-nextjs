@@ -6,8 +6,11 @@ import { supabase } from "./lib/supabaseClient";
 
 import Tags from "./tags/page";
 import { NavigationDesktop } from "@/components/Navigation";
-import Header, { HeaderMobile } from "@/components/Header";
+
 import { filterNotesBySearch } from "./lib/filterNotes";
+import NewNote from "./newNote/page";
+import { NoteDetail } from "@/components/NoteDetail";
+
 
 
 
@@ -22,6 +25,8 @@ export default function Home() {
   const [screenSize, setScreenSize] = useState(0);
   const [isMobile, setIsMobile] = useState(false);
   const [search, setSearch] = useState('');
+  const [detail, setdetail] = useState(null);
+  const [selectedArea, setSelectedArea] = useState(null);
 
 
   useEffect(() => {
@@ -44,7 +49,7 @@ export default function Home() {
       console.log('removed');
       supabase.removeChannel(noteChannel);
     }
-  }, [])
+  }, [notes])
 
   useEffect(() => {
     function handleResize() {
@@ -61,42 +66,63 @@ export default function Home() {
 
   const filteredNotes = filterNotesBySearch(notes, search);
 
+  function takeDetail(id) {
+    const note = notes.find(x => x.id === id);
+    setdetail(note);
+    setSelectedArea("note-detail");
+  }
 
   return (
     <div className={isMobile ? "main-container" : ""}>
-      <div className={isMobile ? "container" : ""}>
+      <div className={isMobile ? "column-container" : "container"}>
         <div className="header-2">
-          <HeaderMobile />
-          <input type="text" name="search" placeholder="Search..." onChange={e => setSearch(e.target.value)} value={search} />
+          <h2>All Notes</h2>
+          <div className="header-filter-input-section">
+            <input type="text" name="search" placeholder="Search by title,content, or tags..." onChange={e => setSearch(e.target.value)} value={search} />
+            <img src="/images/setting-icon.svg" alt="" />
+          </div>
 
 
 
         </div>
-        <div>
-          {!isEmpty ? (
+        <div className="notes-column">
+          {notes.length === 0 ? (
             <div className="empty-area">
               <p>You don’t have any notes yet. Start a new note to capture your thoughts and ideas.</p>
             </div>
           ) : (
-            filteredNotes?.map(x => (
-              <Link key={x.id} href={`/notes/${x.id}`}>
-                <div className="new-notes">
-                  <h3>{x.title}</h3>
-                  <h5>{x.tags}</h5>
-                  <h6>{x.created_at}</h6>
-                  <hr />
-                </div>
-              </Link>
-            ))
+            <>
+              <button onClick={() => setSelectedArea("new-note")}>+ Create New Note</button>
+              {filteredNotes?.map(x => (
+                <Link key={x.id} href={screenSize > 768 ? `#` : `/notes/${x.id}`}>
+                  <div className="new-notes" onClick={() => takeDetail(x.id)}>
+                    <h3>{x.title}</h3>
+                    <h5>{x.tags}</h5>
+                    <h6>{x.created_at}</h6>
+                    <hr />
+                  </div>
+                </Link>
+              ))}
+            </>
           )}
-
         </div>
 
-        <Link href="newNote">
+
+        {/* <Link href="newNote">
           <img className="plus" src="/images/plus.svg" />
-        </Link>
+        </Link> */}
+        <div className="wide-column">
+          {selectedArea === "note-detail" &&
+            <NoteDetail id={detail?.id} isMobile={isMobile} setSelectedArea={setSelectedArea} />
+          }
+          {selectedArea === "new-note" &&
+            <NewNote id={detail?.id} screenSize={screenSize} />
+          }
+
+        </div>
         <div>
-          dsad
+          <button></button>
+          <button></button>
         </div>
       </div>
       {isMobile ? (

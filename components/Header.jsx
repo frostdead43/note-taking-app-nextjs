@@ -10,12 +10,3 @@ export default function Header() {
   )
 }
 
-export function HeaderMobile() {
-  return (
-    <header>
-      <h2>All Notes</h2>
-
-    </header>
-
-  )
-}
