@@ -10,6 +10,7 @@ import { NavigationDesktop } from "@/components/Navigation";
 import { filterNotesBySearch } from "./lib/filterNotes";
 import NewNote from "./newNote/page";
 import { NoteDetail } from "@/components/NoteDetail";
+import { BtnGroupColumn } from "@/components/BtnGroupColumn";
 
 
 
@@ -121,8 +122,7 @@ export default function Home() {
 
         </div>
         <div>
-          <button></button>
-          <button></button>
+          <BtnGroupColumn noteId={detail?.id} setSelectedArea={setSelectedArea} />
         </div>
       </div>
       {isMobile ? (

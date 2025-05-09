@@ -281,8 +281,8 @@ dialog p {
 
   .column-container {
     display: grid;
-    grid-template-columns: 290px 588px 250px;
-
+    grid-template-columns: 290px 1fr 250px;
+    align-content: start;
     height: 100%;
   }
 
@@ -461,6 +461,31 @@ dialog p {
   .wide-column-section {
     padding: 0;
     border: none;
+  }
+
+  .btn-group-column {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 13px 16px;
+    border: 1px solid #cacfd8;
+    cursor: pointer;
+    border-radius: 8px;
+
+    h6 {
+      font-weight: 500;
+      font-size: 14px;
+      line-height: 120%;
+      letter-spacing: -0.2px;
+      color: #0e121b;
+    }
+  }
+
+  .btn-group-column-container {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 20px 12px;
   }
 }
 
