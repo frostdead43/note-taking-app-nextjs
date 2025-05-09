@@ -239,11 +239,35 @@ dialog p {
   display: none;
 }
 
+.create-note-btn {
+  display: none;
+}
+
 @media (width > 768px) {
   .main-container {
     display: grid;
     grid-template-columns: 272px 1fr;
     height: 100%;
+  }
+
+  .plus {
+    display: none;
+  }
+
+  .create-note-btn {
+    display: block;
+    background: var(--colors-blue-500, #335cff);
+    padding-block: 12px;
+    text-align: center;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 120%;
+    letter-spacing: -0.2px;
+    color: #fff;
+    border-radius: 8px;
+    border: none;
+    width: 100%;
+    margin-bottom: 16px;
   }
 
   .column-group {

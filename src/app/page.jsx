@@ -92,7 +92,7 @@ export default function Home() {
             </div>
           ) : (
             <>
-              <button onClick={() => setSelectedArea("new-note")}>+ Create New Note</button>
+              <button onClick={() => setSelectedArea("new-note")} className="create-note-btn">+ Create New Note</button>
               {filteredNotes?.map(x => (
                 <Link key={x.id} href={screenSize > 768 ? `#` : `/notes/${x.id}`}>
                   <div className="new-notes" onClick={() => takeDetail(x.id)}>
@@ -105,12 +105,12 @@ export default function Home() {
               ))}
             </>
           )}
+          <Link href="newNote">
+            <img className="plus" src="/images/plus.svg" />
+          </Link>
         </div>
 
 
-        {/* <Link href="newNote">
-          <img className="plus" src="/images/plus.svg" />
-        </Link> */}
         <div className="wide-column">
           {selectedArea === "note-detail" &&
             <NoteDetail id={detail?.id} isMobile={isMobile} setSelectedArea={setSelectedArea} />
