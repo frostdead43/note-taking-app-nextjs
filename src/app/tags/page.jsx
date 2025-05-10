@@ -27,7 +27,7 @@ export default function Tags() {
       <div className="tags-detail-container">
         <h2 className={screenSize > 768 ? "tags-title" : ""}>Tags</h2>
         {searchTags.map(tag => (
-          <Link key={tag.tags} href={`/tags/${tag}`}>
+          <Link key={tag} href={`/tags/${tag}`}>
             <div className={screenSize > 768 ? "tags" : "tags-area"}>
               <img src="./images/tag-icon.svg" />
               <div className="tag-name">
