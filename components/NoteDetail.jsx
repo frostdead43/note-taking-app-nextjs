@@ -97,41 +97,7 @@ export function NoteDetail({ id, screenSize, setSelectedArea, isMobile }) {
   return (
     <>
       <form onSubmit={handleSave}>
-        {/* <div className="detail-container">
-          <div className="menu-bar">
-            <div>
-              <Link href={"/"}><button type="button">Go Back</button></Link>
-            </div>
-            <div className="flex">
-              <img onClick={handleOpenModal} src="../images/delete-icon.svg" />
-              <img onClick={handleOpenArchiveModal} src="../images/archive-icon.svg" />
-              <Link href={"/"}><button type="button">Cancel</button></Link>
-              <button type="submit" className="save-btn">Save Note</button>
-            </div>
-          </div>
-          <div className="body">
-            <input className="title-input" type="text" name="title" value={titleEdit} onChange={handleTitleChange}></input>
-            <div className="new-note-body">
-              <div className="note-input">
-                <img src="../images/tag-mini.svg" />
-                <h6>Tags</h6>
-                <h6 style={{ color: "rgba(51, 92, 255, 1)" }}>{noteDetails?.tags}</h6>
-              </div>
-              <div className="note-input">
-                <img src="../images/clock-icon.svg" />
-                <h6>Last edited</h6>
-                <h6 style={{ color: "rgba(51, 92, 255, 1)" }}>{noteDetails?.created_at}</h6>
-              </div>
-            </div>
-            <hr />
-            <div className="asd">
-              <textarea value={edit} onChange={handleChange}></textarea>
-            </div>
-          </div>
-        </div> */}
-        {/* mediadan dolayı tel patladı */}
         <div className="detail-container">
-
           {!isMobile ? <div>
             <div className="mobil-note-detail">
               <div>

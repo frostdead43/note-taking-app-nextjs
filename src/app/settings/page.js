@@ -3,34 +3,35 @@ import "./settings.css"
 import "../globals.css"
 import Link from "next/link"
 
-export default function Settings() {
+
+export default function Settings({screenSize, setSelectedArea}) {
   return (
     <div className="container">
       <h2>Settings</h2>
       <div className="settings-area">
 
-        <Link href="/settings/theme">
+        <Link onClick={() => setSelectedArea("color")} href={screenSize > 768 ? `#` : `/settings/theme`}>
           <div className="setting">
             <img src="./images/light-mode-icon.svg" />
             <h5>Color Theme</h5>
           </div>
         </Link>
 
-        <Link href="/settings/fonts">
+        <Link onClick={() => setSelectedArea("fonts")} href={screenSize > 768 ? `#` : `/settings/fonts`}>
           <div className="setting">
             <img src="./images/font-icon.svg" />
             <h5>Font Theme</h5>
           </div>
         </Link>
 
-        <Link href="/settings/password">
+        <Link onClick={() => setSelectedArea("password")} href={screenSize > 768 ? `#` : `/settings/password`}>
           <div className="setting">
             <img src="./images/password-icon.svg" />
             <h5>Change Password</h5>
           </div>
         </Link>
 
-        <Link href="/settings/logout">
+        <Link href={screenSize > 768 ? `#` : `/settings/logout`}>
           <div className="setting">
             <img src="./images/logout-icon.svg" />
             <h5>Logout</h5>

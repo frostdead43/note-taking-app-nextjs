@@ -3,14 +3,17 @@ import { createContext, useEffect, useState, useContext } from "react";
 import "./page.css"
 import Link from "next/link";
 import { supabase } from "./lib/supabaseClient";
-
 import Tags from "./tags/page";
 import { NavigationDesktop } from "@/components/Navigation";
-
 import { filterNotesBySearch } from "./lib/filterNotes";
 import NewNote from "./newNote/page";
 import { NoteDetail } from "@/components/NoteDetail";
 import { BtnGroupColumn } from "@/components/BtnGroupColumn";
+import Settings from "./settings/page";
+import Theme from "./settings/theme/page";
+import Fonts from "./settings/fonts/page";
+import Password from "./settings/password/page";
+
 
 
 
@@ -22,7 +25,6 @@ import { BtnGroupColumn } from "@/components/BtnGroupColumn";
 export const ScreenSize = createContext(null)
 
 export default function Home() {
-  const [isEmpty, setIsEmpty] = useState(true);
   const [notes, setNotes] = useState([]);
   const [screenSize, setScreenSize] = useState(0);
   const [isMobile, setIsMobile] = useState(false);
@@ -33,6 +35,7 @@ export default function Home() {
   const [holdTag, setHoldTag] = useState(null);
   const [allNotes, setAllNotes] = useState([]);
   const [noteColumnArea, setNoteColumnArea] = useState("all-notes");
+  const [isBtnActive,setIsBtnActive] = useState(false);
 
   useEffect(() => {
     async function getData() {
@@ -58,11 +61,12 @@ export default function Home() {
     ).subscribe();
     getData();
     getArchive();
+    console.log("rendered");
 
     return () => {
       supabase.removeChannel(noteChannel);
     }
-  }, [notes])
+  }, [])
 
   useEffect(() => {
     function handleResize() {
@@ -88,6 +92,7 @@ export default function Home() {
     const note = all.find(x => x.id === id);
     setdetail(note);
     setSelectedArea("note-detail");
+    setIsBtnActive(true);
   }
 
 
@@ -101,15 +106,21 @@ export default function Home() {
     setNoteColumnArea("filtered-tags");
   }
 
+    useEffect(() => {
+      if (selectedArea === null) {
+        setIsBtnActive(false);
+        console.log("loop");
+      }
+    }, [selectedArea]);
 
   return (
     <div className={isMobile ? "main-container" : ""}>
       <div className={isMobile ? "column-container" : "container"}>
         <div className="header-2">
-          <h2>{noteColumnArea === "filtered-tags" ? <span>Notes Tagged:{holdTag}</span> : "All Notes"} </h2>
+          <h2>{noteColumnArea === "filtered-tags" ? <span>Notes Tagged: {holdTag}</span> : noteColumnArea === "archive" ? "Archived" : noteColumnArea === "settings" ? "Settings" : "All Notes"} </h2>
           <div className="header-filter-input-section">
             <input type="text" name="search" placeholder="Search by title,content, or tags..." onChange={e => setSearch(e.target.value)} value={search} />
-            <img src="/images/setting-icon.svg" alt="" />
+            <img onClick={() => {setNoteColumnArea("settings");setSelectedArea(null);setIsBtnActive(false)}} src="/images/setting-icon.svg" alt="" />
           </div>
 
 
@@ -156,7 +167,7 @@ export default function Home() {
               </div>
             </Link>
           ))}
-
+          {noteColumnArea === "settings" && <Settings screenSize = {screenSize} setSelectedArea = {setSelectedArea} />}
 
           <Link href="newNote">
             <img className="plus" src="/images/plus.svg" />
@@ -171,18 +182,27 @@ export default function Home() {
           {selectedArea === "new-note" &&
             <NewNote id={detail?.id} screenSize={screenSize} />
           }
+          {selectedArea === "color" && 
+            <Theme/>
+          }
+            {selectedArea === "fonts" && 
+            <Fonts/>
+          }
+            {selectedArea === "password" && 
+            <Password/>
+          }
 
 
         </div>
         <div>
-          <BtnGroupColumn noteId={detail?.id} setSelectedArea={setSelectedArea} />
+          {isBtnActive &&  <BtnGroupColumn noteId={detail?.id} setSelectedArea={setSelectedArea}/>}
         </div>
       </div>
       {isMobile ? (
         <ScreenSize.Provider value={screenSize}>
           <div className="column-group">
-            <NavigationDesktop setNoteColumnArea={setNoteColumnArea} />
-            <Tags takeTagsName={takeTagsName} />
+            <NavigationDesktop setSelectedArea={setSelectedArea} setNoteColumnArea={setNoteColumnArea} />
+            <Tags setSelectedArea={setSelectedArea} takeTagsName={takeTagsName} />
           </div>
 
         </ScreenSize.Provider>

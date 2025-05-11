@@ -2,7 +2,7 @@
 import "./theme.css"
 import { useState } from "react";
 
-export default function Page() {
+export default function Theme() {
   const [selectedTheme, setSelectedTheme] = useState("light");
 
   function handleThemeChange(e) {

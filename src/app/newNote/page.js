@@ -5,13 +5,16 @@ import styles from './newNote.module.css'
 import { createNote } from '../action'
 import { useActionState } from 'react'
 
+
 export default function NewNote() {
   const [state, formAction, isPending] = useActionState(createNote, false);
+
+
+
 
   return (
     <form action={formAction}>
       <div className="container">
-        <button type='submit'>asdsajdashj</button>
         <div className={styles["newnote-area"]}>
           <div className={styles["newnote-header"]}>
             <div>
@@ -19,7 +22,7 @@ export default function NewNote() {
             </div>
             <div className={styles["flex"]}>
               <Link href="/"><span>Cancel</span></Link>
-              <Link href="/"><span>Save Note</span></Link>
+              <button type='submit'> Save Note </button>
             </div>
           </div>
           <div className={styles["newnote-title"]}>

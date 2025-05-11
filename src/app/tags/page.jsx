@@ -27,7 +27,7 @@ export default function Tags({ setSelectedArea, takeTagsName }) {
       <div className="tags-detail-container">
         <h2 className={screenSize > 768 ? "tags-title" : ""}>Tags</h2>
         {searchTags.map(tag => (
-          <Link key={tag} href={screenSize > 768 ? `#` : `/tags/${tag}`} className="tags-link" onClick={() => takeTagsName(tag)}>
+          <Link key={tag} href={screenSize > 768 ? `#` : `/tags/${tag}`} className="tags-link" onClick={() => {takeTagsName(tag);setSelectedArea(null)}}>
             <div className={screenSize > 768 ? "tags" : "tags-area"}  >
               <img src="./images/tag-icon.svg" />
               <div className="tag-name">

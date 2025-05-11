@@ -1,7 +1,7 @@
 "use client"
 import "./change-password.css"
 
-export default function Page() {
+export default function Password() {
   return(
     <div className="password-container">
       <div>

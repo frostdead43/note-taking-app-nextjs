@@ -57,7 +57,7 @@ export default function Navigation() {
   )
 }
 
-export function NavigationDesktop({ setNoteColumnArea }) {
+export function NavigationDesktop({ setNoteColumnArea,setSelectedArea}) {
   const screenSize = useContext(ScreenSize)
   return (
     <div className="desktop-nav">
@@ -67,7 +67,7 @@ export function NavigationDesktop({ setNoteColumnArea }) {
       </div>
 
       <ul>
-        <li tabIndex="0" onClick={() => setNoteColumnArea("all-notes")}>
+        <li tabIndex="0" onClick={() => {setNoteColumnArea("all-notes");setSelectedArea(null)}}>
           <Link href="/">
             <svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path fillRule="evenodd" clipRule="evenodd" d="M4.7959 8.02539C5.21011 8.02539 5.5459 8.36118 5.5459 8.77539V17.4504C5.5459 18.7282 6.58201 19.7643 7.85979 19.7643H16.7391C18.0169 19.7643 19.053 18.7282 19.053 17.4504V8.77539C19.053 8.36118 19.3888 8.02539 19.803 8.02539C20.2172 8.02539 20.553 8.36118 20.553 8.77539V17.4504C20.553 19.5566 18.8453 21.2643 16.7391 21.2643H7.85979C5.75358 21.2643 4.0459 19.5566 4.0459 17.4504V8.77539C4.0459 8.36118 4.38169 8.02539 4.7959 8.02539Z" fill="#525866" />
@@ -79,7 +79,7 @@ export function NavigationDesktop({ setNoteColumnArea }) {
           </Link>
         </li>
 
-        <li className="archive-btn" tabIndex="0" onClick={() => setNoteColumnArea("archive")}>
+        <li className="archive-btn" tabIndex="0" onClick={() => {setNoteColumnArea("archive");setSelectedArea(null)}}>
           <Link href={screenSize > 768 ? `#` : `/archive`}>
             <svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M21.5 7.78216V16.2169C21.5 19.165 19.4188 21 16.4736 21H8.52638C5.58119 21 3.5 19.165 3.5 16.2159V7.78216C3.5 4.83405 5.58119 3 8.52638 3H16.4736C19.4188 3 21.5 4.84281 21.5 7.78216Z" stroke="#525866" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />

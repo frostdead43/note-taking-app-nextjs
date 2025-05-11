@@ -2,7 +2,7 @@
 import "./fonts.css"
 import { useState } from "react";
 
-export default function Page() {
+export default function Fonts() {
   const [selectedFont, setSelectedFont] = useState("Inter");
 
   function handleFontChange(e) {
