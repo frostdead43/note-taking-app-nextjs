@@ -5,7 +5,7 @@ export default function Header() {
   return (
     <header className="header">
       <img src="/images/logo-icon.svg" />
-      <h2>Notes</h2>
+      <a href="/"><img src="/images/main-logo.svg"/></a>
     </header>
   )
 }

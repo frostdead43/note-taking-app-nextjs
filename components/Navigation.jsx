@@ -63,7 +63,7 @@ export function NavigationDesktop({ setNoteColumnArea,setSelectedArea}) {
     <div className="desktop-nav">
       <div className="column-logo">
         <img src="/images/logo-icon.svg" />
-        <h1>Notes</h1>
+        <img className="desktop-icon" src="/images/main-logo.svg"/>
       </div>
 
       <ul>

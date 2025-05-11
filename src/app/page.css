@@ -257,6 +257,10 @@ dialog p {
   .plus {
     display: none;
   }
+  .desktop-icon {
+    width: 57px !important;
+    height: 19px !important;
+  }
 
   .create-note-btn {
     display: block;
