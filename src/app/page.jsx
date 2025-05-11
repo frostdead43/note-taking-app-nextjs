@@ -1,5 +1,5 @@
 "use client";
-import { createContext, useEffect, useState } from "react";
+import { createContext, useEffect, useState, useContext } from "react";
 import "./page.css"
 import Link from "next/link";
 import { supabase } from "./lib/supabaseClient";
@@ -18,6 +18,7 @@ import { BtnGroupColumn } from "@/components/BtnGroupColumn";
 
 
 
+
 export const ScreenSize = createContext(null)
 
 export default function Home() {
@@ -28,13 +29,24 @@ export default function Home() {
   const [search, setSearch] = useState('');
   const [detail, setdetail] = useState(null);
   const [selectedArea, setSelectedArea] = useState(null);
-
+  const [getArchivedNotes, setGetArchivedNotes] = useState([]);
+  const [holdTag, setHoldTag] = useState(null);
+  const [allNotes, setAllNotes] = useState([]);
+  const [noteColumnArea, setNoteColumnArea] = useState("all-notes");
 
   useEffect(() => {
     async function getData() {
       const { data } = await supabase.from('notes').select("*").eq('archived', false);
       setNotes(data);
     }
+
+    async function getArchive() {
+      const { data } = await supabase.from('notes').select("*").eq('archived', true);
+      setGetArchivedNotes(data);
+    }
+
+
+
 
 
     const noteChannel = supabase.channel('insert').on('postgres_changes', { event: 'INSERT', schema: 'public', table: 'notes' },
@@ -45,9 +57,9 @@ export default function Home() {
       }
     ).subscribe();
     getData();
+    getArchive();
 
     return () => {
-      console.log('removed');
       supabase.removeChannel(noteChannel);
     }
   }, [notes])
@@ -65,19 +77,36 @@ export default function Home() {
   }, []);
 
 
-  const filteredNotes = filterNotesBySearch(notes, search);
+  const displayedNotes = noteColumnArea === "filtered-tags" ? filterNotesBySearch(allNotes, search) : filterNotesBySearch(notes, search);
+  const displayedArchivedNotes = filterNotesBySearch(getArchivedNotes, search);
+
+
+
 
   function takeDetail(id) {
-    const note = notes.find(x => x.id === id);
+    const all = [...notes, ...getArchivedNotes];
+    const note = all.find(x => x.id === id);
     setdetail(note);
     setSelectedArea("note-detail");
   }
+
+
+  function takeTagsName(tag) {
+    const archivedNotes = getArchivedNotes.filter(x => x.tags === tag);
+    const normalNotes = notes.filter(x => x.tags === tag);
+    const allNotes = [...archivedNotes, ...normalNotes];
+    console.log(allNotes);
+    setHoldTag(tag);
+    setAllNotes(allNotes);
+    setNoteColumnArea("filtered-tags");
+  }
+
 
   return (
     <div className={isMobile ? "main-container" : ""}>
       <div className={isMobile ? "column-container" : "container"}>
         <div className="header-2">
-          <h2>All Notes</h2>
+          <h2>{noteColumnArea === "filtered-tags" ? <span>Notes Tagged:{holdTag}</span> : "All Notes"} </h2>
           <div className="header-filter-input-section">
             <input type="text" name="search" placeholder="Search by title,content, or tags..." onChange={e => setSearch(e.target.value)} value={search} />
             <img src="/images/setting-icon.svg" alt="" />
@@ -94,7 +123,7 @@ export default function Home() {
           ) : (
             <>
               <button onClick={() => setSelectedArea("new-note")} className="create-note-btn">+ Create New Note</button>
-              {filteredNotes?.map(x => (
+              {noteColumnArea === "all-notes" && displayedNotes?.map(x => (
                 <Link key={x.id} href={screenSize > 768 ? `#` : `/notes/${x.id}`}>
                   <div className="new-notes" onClick={() => takeDetail(x.id)}>
                     <h3>{x.title}</h3>
@@ -106,6 +135,29 @@ export default function Home() {
               ))}
             </>
           )}
+          {noteColumnArea === "filtered-tags" && displayedNotes?.map(x => (
+            <Link key={x.id} href={screenSize > 768 ? `#` : `/notes/${x.id}`}>
+              <div className="new-notes" onClick={() => takeDetail(x.id)}>
+                <h3>{x.title}</h3>
+                <h5>{x.tags}</h5>
+                <h6>{x.created_at}</h6>
+                <hr />
+              </div>
+            </Link>
+          ))}
+
+          {noteColumnArea === "archive" && displayedArchivedNotes?.map(x => (
+            <Link key={x.id} href={screenSize > 768 ? `#` : `/notes/${x.id}`}>
+              <div className="new-notes" onClick={() => takeDetail(x.id)}>
+                <h3>{x.title}</h3>
+                <h5>{x.tags}</h5>
+                <h6>{x.created_at}</h6>
+                <hr />
+              </div>
+            </Link>
+          ))}
+
+
           <Link href="newNote">
             <img className="plus" src="/images/plus.svg" />
           </Link>
@@ -120,6 +172,7 @@ export default function Home() {
             <NewNote id={detail?.id} screenSize={screenSize} />
           }
 
+
         </div>
         <div>
           <BtnGroupColumn noteId={detail?.id} setSelectedArea={setSelectedArea} />
@@ -128,8 +181,8 @@ export default function Home() {
       {isMobile ? (
         <ScreenSize.Provider value={screenSize}>
           <div className="column-group">
-            <NavigationDesktop />
-            <Tags />
+            <NavigationDesktop setNoteColumnArea={setNoteColumnArea} />
+            <Tags takeTagsName={takeTagsName} />
           </div>
 
         </ScreenSize.Provider>

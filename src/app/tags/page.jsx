@@ -6,7 +6,7 @@ import { supabase } from "../lib/supabaseClient";
 import { ScreenSize } from "../page";
 
 
-export default function Tags() {
+export default function Tags({ setSelectedArea, takeTagsName }) {
   const screenSize = useContext(ScreenSize);
   const [searchTags, setSearchTags] = useState([]);
   const [tags, setTags] = useState("");
@@ -27,8 +27,8 @@ export default function Tags() {
       <div className="tags-detail-container">
         <h2 className={screenSize > 768 ? "tags-title" : ""}>Tags</h2>
         {searchTags.map(tag => (
-          <Link key={tag} href={`/tags/${tag}`}>
-            <div className={screenSize > 768 ? "tags" : "tags-area"}>
+          <Link key={tag} href={screenSize > 768 ? `#` : `/tags/${tag}`} className="tags-link" onClick={() => takeTagsName(tag)}>
+            <div className={screenSize > 768 ? "tags" : "tags-area"}  >
               <img src="./images/tag-icon.svg" />
               <div className="tag-name">
                 <h6>{tag}</h6>

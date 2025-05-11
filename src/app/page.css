@@ -243,6 +243,10 @@ dialog p {
   display: none;
 }
 
+.btn-group-column-container {
+  display: none;
+}
+
 @media (width > 768px) {
   .main-container {
     display: grid;
@@ -284,8 +288,7 @@ dialog p {
     grid-template-columns: 290px 1fr 250px;
     align-content: start;
     height: 100%;
-    overflow: hidden;
-    /* overflow u dene bi full not doldurup belki patlar */
+    /* overflow: hidden; */
   }
 
   .notes-column {
@@ -458,7 +461,7 @@ dialog p {
   }
 
   .header {
-    display: none;
+    display: none !important;
   }
 
   .wide-column-section {
