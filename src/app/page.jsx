@@ -13,6 +13,9 @@ import Settings from "./settings/page";
 import Theme from "./settings/theme/page";
 import Fonts from "./settings/fonts/page";
 import Password from "./settings/password/page";
+import ArchivedNotes from "@/components/ArchivedNotes";
+import AllNotes from "@/components/AllNotes";
+import FilteredTagsNotes from "@/components/FilteredTagsNotes";
 
 
 
@@ -35,7 +38,7 @@ export default function Home() {
   const [holdTag, setHoldTag] = useState(null);
   const [allNotes, setAllNotes] = useState([]);
   const [noteColumnArea, setNoteColumnArea] = useState("all-notes");
-  const [isBtnActive,setIsBtnActive] = useState(false);
+  const [isBtnActive, setIsBtnActive] = useState(false);
 
   useEffect(() => {
     async function getData() {
@@ -106,12 +109,12 @@ export default function Home() {
     setNoteColumnArea("filtered-tags");
   }
 
-    useEffect(() => {
-      if (selectedArea === null) {
-        setIsBtnActive(false);
-        console.log("loop");
-      }
-    }, [selectedArea]);
+  useEffect(() => {
+    if (selectedArea === null) {
+      setIsBtnActive(false);
+      console.log("loop");
+    }
+  }, [selectedArea]);
 
   return (
     <div className={isMobile ? "main-container" : ""}>
@@ -120,7 +123,7 @@ export default function Home() {
           <h2>{noteColumnArea === "filtered-tags" ? <span>Notes Tagged: {holdTag}</span> : noteColumnArea === "archive" ? "Archived" : noteColumnArea === "settings" ? "Settings" : "All Notes"} </h2>
           <div className="header-filter-input-section">
             <input type="text" name="search" placeholder="Search by title,content, or tags..." onChange={e => setSearch(e.target.value)} value={search} />
-            <img onClick={() => {setNoteColumnArea("settings");setSelectedArea(null);setIsBtnActive(false)}} src="/images/setting-icon.svg" alt="" />
+            <img onClick={() => { setNoteColumnArea("settings"); setSelectedArea(null); setIsBtnActive(false) }} src="/images/setting-icon.svg" alt="" />
           </div>
 
 
@@ -134,40 +137,21 @@ export default function Home() {
           ) : (
             <>
               <button onClick={() => setSelectedArea("new-note")} className="create-note-btn">+ Create New Note</button>
-              {noteColumnArea === "all-notes" && displayedNotes?.map(x => (
-                <Link key={x.id} href={screenSize > 768 ? `#` : `/notes/${x.id}`}>
-                  <div className="new-notes" onClick={() => takeDetail(x.id)}>
-                    <h3>{x.title}</h3>
-                    <h5>{x.tags}</h5>
-                    <h6>{x.created_at}</h6>
-                    <hr />
-                  </div>
-                </Link>
-              ))}
+              {noteColumnArea === "all-notes" && (
+                <AllNotes notes={displayedNotes} screenSize={screenSize} takeDetail={takeDetail} />
+              )}
+              {noteColumnArea === "filtered-tags" && (
+                <FilteredTagsNotes notes={displayedNotes} screenSize={screenSize} takeDetail={takeDetail} />
+              )}
+              {noteColumnArea === "archive" && (
+                <ArchivedNotes notes={displayedArchivedNotes} screenSize={screenSize} takeDetail={takeDetail} />
+              )}
+              {noteColumnArea === "settings" && (
+                <Settings screenSize={screenSize} setSelectedArea={setSelectedArea} />
+              )}
             </>
           )}
-          {noteColumnArea === "filtered-tags" && displayedNotes?.map(x => (
-            <Link key={x.id} href={screenSize > 768 ? `#` : `/notes/${x.id}`}>
-              <div className="new-notes" onClick={() => takeDetail(x.id)}>
-                <h3>{x.title}</h3>
-                <h5>{x.tags}</h5>
-                <h6>{x.created_at}</h6>
-                <hr />
-              </div>
-            </Link>
-          ))}
 
-          {noteColumnArea === "archive" && displayedArchivedNotes?.map(x => (
-            <Link key={x.id} href={screenSize > 768 ? `#` : `/notes/${x.id}`}>
-              <div className="new-notes" onClick={() => takeDetail(x.id)}>
-                <h3>{x.title}</h3>
-                <h5>{x.tags}</h5>
-                <h6>{x.created_at}</h6>
-                <hr />
-              </div>
-            </Link>
-          ))}
-          {noteColumnArea === "settings" && <Settings screenSize = {screenSize} setSelectedArea = {setSelectedArea} />}
 
           <Link href="newNote">
             <img className="plus" src="/images/plus.svg" />
@@ -182,20 +166,20 @@ export default function Home() {
           {selectedArea === "new-note" &&
             <NewNote id={detail?.id} screenSize={screenSize} />
           }
-          {selectedArea === "color" && 
-            <Theme/>
+          {selectedArea === "color" &&
+            <Theme />
           }
-            {selectedArea === "fonts" && 
-            <Fonts/>
+          {selectedArea === "fonts" &&
+            <Fonts />
           }
-            {selectedArea === "password" && 
-            <Password/>
+          {selectedArea === "password" &&
+            <Password />
           }
 
 
         </div>
         <div>
-          {isBtnActive &&  <BtnGroupColumn noteId={detail?.id} setSelectedArea={setSelectedArea}/>}
+          {isBtnActive && <BtnGroupColumn noteId={detail?.id} setSelectedArea={setSelectedArea} />}
         </div>
       </div>
       {isMobile ? (
