@@ -323,6 +323,31 @@ hr {
     line-height: 40.39px;
     letter-spacing: -0.02em;
   }
+  .desktop-menu-h6 {
+    color: rgba(224, 228, 234, 1);
+  }
+
+  .detail-container input {
+    color: white;
+  }
+  .wide-column-inner h6 {
+    color: rgba(202, 207, 216, 1);
+  }
+  .wide-column-textarea textarea {
+    color: rgba(243, 245, 248, 1);
+  }
+  .btn-group-column-container h6{
+    color: white;
+  }
+  .cancel-btn{
+    background-color: rgba(35, 37, 48, 1);
+  }
+  .password-input {
+    border: 1px solid var(--colors-neutral-600, rgba(82, 88, 102, 1));
+    color: white;
+    font-size: 17px;
+    padding-left: 12px;
+  }
 }
 
 html,
