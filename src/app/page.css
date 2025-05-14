@@ -20,6 +20,7 @@ h2 {
   padding: 8px;
   background-color: rgba(243, 245, 248, 1);
   border: 1px solid rgba(224, 228, 234, 1);
+  border-radius: 8px;
   p {
     color: rgba(14, 18, 27, 1);
     font-weight: 400;

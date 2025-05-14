@@ -140,8 +140,13 @@ hr {
     background-color: rgba(14, 18, 27, 1);
     box-shadow: 0px -5px 6px 0px rgba(0, 0, 0, 0.5);
     border-top: none;
+    
     button {
       background-color: rgba(14, 18, 27, 1);
+    }
+    ul {
+      background-color: rgb(14, 18, 27);
+      box-shadow: none;
     }
     li {
       background-color: rgba(14, 18, 27, 1);
@@ -358,6 +363,13 @@ hr {
    .column-logo svg path {
     fill: white !important;
   } 
+  .empty-area {
+    background-color: rgba(43, 48, 59, 1);
+  }
+  .empty-area p  {
+    color: white;
+  }
+
 }
 
 
