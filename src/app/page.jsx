@@ -18,13 +18,6 @@ import AllNotes from "@/components/AllNotes";
 import FilteredTagsNotes from "@/components/FilteredTagsNotes";
 
 
-
-
-
-
-
-
-
 export const ScreenSize = createContext(null)
 
 export default function Home() {

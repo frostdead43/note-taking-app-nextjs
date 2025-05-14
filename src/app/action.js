@@ -5,7 +5,7 @@ export async function createNote(currentState, formData) {
   const title = formData.get("title");
   const tags = formData.get("tags");
   const body = formData.get("body");
-  const created_at = formData.get("created_at");
+  const created_at = new Date().toISOString().split("T")[0];
 
   const formObj = { title, tags, body,created_at };
 

@@ -9,6 +9,7 @@ import { useActionState } from 'react'
 export default function NewNote() {
   const [state, formAction, isPending] = useActionState(createNote, false);
 
+  const today = new Date().toISOString().split("T")[0];
 
 
 
@@ -36,7 +37,7 @@ export default function NewNote() {
           <div className={styles["note-input"]}>
             <img src="/images/clock-icon.svg" />
             <h6 className={styles["h6"]}>Last edited</h6>
-            <input className={styles["asd"]} type="text" name='created_at' disabled placeholder="Not yet saved" />
+            <input className={styles["asd"]} type="text" value={today} name='created_at' readOnly placeholder="Not yet saved" />
           </div>
         </div>
 
