@@ -5,6 +5,8 @@ export default function AllNotes({ notes, screenSize, takeDetail }) {
   return (
     <>
 
+      {screenSize < 768 && <h2>All Notes</h2>}
+
       {notes.map(note => (
         <Link key={note.id} href={screenSize > 768 ? "#" : `/notes/${note.id}`}>
           <div className="new-notes" onClick={() => takeDetail(note.id)}>
