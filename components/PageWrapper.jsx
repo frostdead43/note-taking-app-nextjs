@@ -1,6 +1,6 @@
-// components/PageWrapper.js
-"use client";  // Bu satır client-side bileşen olduğunu belirtir.
+"use client";
 
+// motion'ı m olarak import et (Next.js + Framer Motion daha iyi anlaşsın)
 import { motion, AnimatePresence } from "framer-motion";
 import { usePathname } from "next/navigation";
 
@@ -11,16 +11,16 @@ const pageVariants = {
 };
 
 export default function PageWrapper({ children }) {
-  const pathname = usePathname(); // current path'i alır
+  const pathname = usePathname();
 
   return (
-    <AnimatePresence mode="wait">
+    <AnimatePresence mode="wait" initial={false}>
       <motion.div
         key={pathname}
-        variants={pageVariants}
         initial="initial"
         animate="animate"
         exit="exit"
+        variants={pageVariants}
       >
         {children}
       </motion.div>
