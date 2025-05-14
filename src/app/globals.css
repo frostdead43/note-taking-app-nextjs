@@ -353,8 +353,11 @@ hr {
     padding-left: 12px;
   }
   .header a svg path {
-    stroke: white !important;
+    fill: white !important;
   }
+   .column-logo svg path {
+    fill: white !important;
+  } 
 }
 
 
