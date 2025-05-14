@@ -19,3 +19,14 @@ export async function handleArchive(id) {
     redirect("/");
   }
 }
+
+ export async function handleRestore(id) {
+    const { error } = await supabase.from('notes').update({ archived: false }).eq('id', id);
+
+    if (error) {
+      console.error('Arşive gönderme hatası:', error);
+    } else {
+      console.log('Not başarıyla arşivden çıkarıldı!');
+    }
+  }
+

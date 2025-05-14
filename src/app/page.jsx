@@ -137,7 +137,7 @@ export default function Home() {
                 <FilteredTagsNotes notes={displayedNotes} screenSize={screenSize} takeDetail={takeDetail} />
               )}
               {noteColumnArea === "archive" && (
-                <ArchivedNotes notes={displayedArchivedNotes} screenSize={screenSize} takeDetail={takeDetail} />
+                <ArchivedNotes notes={displayedArchivedNotes} screenSize={screenSize} takeDetail={takeDetail}  />
               )}
               {noteColumnArea === "settings" && (
                 <Settings screenSize={screenSize} setSelectedArea={setSelectedArea} />
@@ -172,7 +172,7 @@ export default function Home() {
 
         </div>
         <div>
-          {isBtnActive && <BtnGroupColumn noteId={detail?.id} setSelectedArea={setSelectedArea} />}
+          {isBtnActive && <BtnGroupColumn noteId={detail?.id} setSelectedArea={setSelectedArea} noteColumnArea={noteColumnArea}/>}
         </div>
       </div>
       {isMobile ? (

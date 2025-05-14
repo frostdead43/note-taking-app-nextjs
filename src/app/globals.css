@@ -164,6 +164,10 @@ hr {
     color: rgba(35, 37, 48, 0.4);
   }
 
+  html,body {
+    height: 100%;
+  }
+
   .search-area p {
     color: rgba(202, 207, 216, 1);
   }
@@ -348,9 +352,10 @@ hr {
     font-size: 17px;
     padding-left: 12px;
   }
+  .header a svg path {
+    stroke: white !important;
+  }
 }
 
-html,
-body {
-  height: 100%;
-}
+
+
