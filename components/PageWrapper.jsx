@@ -1,5 +1,5 @@
 // components/PageWrapper.js
-"use client";
+"use client";  // Bu satır client-side bileşen olduğunu belirtir.
 
 import { motion, AnimatePresence } from "framer-motion";
 import { usePathname } from "next/navigation";
@@ -11,7 +11,7 @@ const pageVariants = {
 };
 
 export default function PageWrapper({ children }) {
-  const pathname = usePathname();
+  const pathname = usePathname(); // current path'i alır
 
   return (
     <AnimatePresence mode="wait">
