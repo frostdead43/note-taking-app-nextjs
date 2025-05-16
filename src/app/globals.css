@@ -369,6 +369,15 @@ hr {
   .empty-area p  {
     color: white;
   }
+  .darkmode-icon svg path {
+    fill: white;
+  }
+  .lightmode-icon svg path {
+    stroke: white;
+  }
+  .setting svg path {
+    stroke: rgb(44, 43, 43)
+  }
 
 }
 
