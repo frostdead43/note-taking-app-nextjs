@@ -5,6 +5,7 @@ import Navigation from "@/components/Navigation";
 import Header from "@/components/Header";
 import { AnimatePresence, motion } from "framer-motion";
 import PageWrapper from "@/components/PageWrapper";
+import ThemeInitializer from "./lib/themeInitializer";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -30,6 +31,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
+        <ThemeInitializer />
         <Header />
         <PageWrapper>{children}</PageWrapper>
         <Navigation />

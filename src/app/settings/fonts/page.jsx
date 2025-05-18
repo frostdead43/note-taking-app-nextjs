@@ -1,5 +1,6 @@
 "use client"
 import "./fonts.css"
+import "src/app/globals.css"
 import { useState } from "react";
 
 export default function Fonts() {
