@@ -2,6 +2,8 @@
 import "./settings.css"
 import "../globals.css"
 import Link from "next/link"
+import Login from "@/components/Login"
+import SignUp from "@/components/SignUp"
 
 
 export default function Settings({screenSize, setSelectedArea}) {
@@ -42,6 +44,8 @@ export default function Settings({screenSize, setSelectedArea}) {
         </Link>
 
       </div>
+      <SignUp />
     </div>
+
   )
 }
