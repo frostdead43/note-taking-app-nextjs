@@ -1,8 +1,19 @@
 import Link from "next/link"
 import "./login.css"
 import "src/app/globals.css"
+import { useActionState } from "react";
+import handleSignUp from "@/src/app/signupAction";
+import { supabase } from "@/src/app/lib/supabaseClient";
+
+
+ 
 
 export default function SignUp() {
+
+  const [state, formSingUpAction, isPending] = useActionState(handleSignUp, false);
+
+
+
   return(
  <div className="container">
       <div className="login-header">
@@ -15,20 +26,24 @@ export default function SignUp() {
         <h2>Create Your Account</h2>
         <p>Sign up to start organizing your notes and boost your productivity.</p>
       </div>
+      <form action={formSingUpAction}>
         <div className="login-body">
           <div>
             <h6>Email Address</h6>
-            <input type="email" placeholder="email@example.com"/>
+            <input type="email" name="email" placeholder="email@example.com"/>
           </div>
-          <div>
-            <div className="flex">
-              <h6>Password</h6>
-              <h6>Forgot</h6>
+            <div>
+              <div className="flex">
+                <h6>Password</h6>
+                <h6>Forgot</h6>
+              </div>
+
+              <input name="password" type="password"/>
+              <span>At least 8 characters</span>
             </div>
-            <input type="password"/>
-             <span>At least 8 characters</span>
-          </div>
-          <button className="login-btn">Sign up</button>
+            <button className="login-btn">Sign up</button>
+         </div>
+      </form>
         <div className="login-footer">
           <h6>Or log in with:</h6>
           <button className="google-flex">
@@ -38,7 +53,7 @@ export default function SignUp() {
             <h4>Google</h4>
           </button>
           <h5>Already have an account?<Link className="sign-up-btn" href={"/"}> Login</Link></h5>
-        </div>
+       
         </div>
 
     </div>
