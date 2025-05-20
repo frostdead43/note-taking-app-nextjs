@@ -1,21 +1,13 @@
 import Link from "next/link"
-import "./login.css"
+import "./signup.css"
 import "src/app/globals.css"
-import { useActionState } from "react";
-import handleSignUp from "@/src/app/signupAction";
-import { supabase } from "@/src/app/lib/supabaseClient";
+import { signupAct } from "./signupAction"
 
-
- 
 
 export default function SignUp() {
 
-  const [state, formSingUpAction, isPending] = useActionState(handleSignUp, false);
-
-
-
   return(
- <div className="container">
+  <div className="container">
       <div className="login-header">
         <div className="login-logo">
           <img src="/images/Feather.svg"/>
@@ -26,7 +18,7 @@ export default function SignUp() {
         <h2>Create Your Account</h2>
         <p>Sign up to start organizing your notes and boost your productivity.</p>
       </div>
-      <form action={formSingUpAction}>
+      <form>
         <div className="login-body">
           <div>
             <h6>Email Address</h6>
@@ -41,7 +33,7 @@ export default function SignUp() {
               <input name="password" type="password"/>
               <span>At least 8 characters</span>
             </div>
-            <button className="login-btn">Sign up</button>
+            <button formAction={signupAct} className="login-btn">Sign up</button>
          </div>
       </form>
         <div className="login-footer">
@@ -52,7 +44,7 @@ export default function SignUp() {
             </svg>
             <h4>Google</h4>
           </button>
-          <h5>Already have an account?<Link className="sign-up-btn" href={"/"}> Login</Link></h5>
+          <h5>Already have an account?<Link className="sign-up-btn" href={"/login"}> Login</Link></h5>
        
         </div>
 

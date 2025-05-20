@@ -16,12 +16,16 @@ import Password from "./settings/password/page";
 import ArchivedNotes from "@/components/ArchivedNotes";
 import AllNotes from "@/components/AllNotes";
 import FilteredTagsNotes from "@/components/FilteredTagsNotes";
+import { useRouter } from "next/navigation";
 
 
-export const ScreenSize = createContext(null)
+export const ScreenSize = createContext(null);
+
 
 export default function Home() {
+  const [isLoggedIn,setLoggedIn] = useState(false)
   const [notes, setNotes] = useState([]);
+  const [user, setUser] = useState(null)
   const [screenSize, setScreenSize] = useState(0);
   const [isMobile, setIsMobile] = useState(false);
   const [search, setSearch] = useState('');
@@ -33,6 +37,40 @@ export default function Home() {
   const [noteColumnArea, setNoteColumnArea] = useState("all-notes");
   const [isBtnActive, setIsBtnActive] = useState(false);
 
+  // const router = useRouter();
+
+  //   useEffect(() => {
+  //   async function getUser() {
+  //     const { data: { session } } = await supabase.auth.getSession();
+  //     if (session) {
+  //       setLoggedIn(true);
+  //       setUser(session.user.user_metadata);
+  //        console.log(session.user.user_metadata);
+  //     }
+  //   }
+
+  //   getUser();
+
+  //   const { data: authListener } = supabase.auth.onAuthStateChange((event, session) => {
+  //     if (event === 'SIGNED_IN') {
+  //       setLoggedIn(true);
+  //       setUser(session?.user?.user_metadata);
+  //       console.log(user);
+  //       console.log("giris yapildi");
+  //       router.push("/");
+  //     } else if (event === 'SIGNED_OUT') {
+  //       setLoggedIn(false);
+  //       setUser(null);
+  //       router.push("/login");
+  //     }
+  //   });
+
+  //   return () => {
+  //     authListener?.subscription?.unsubscribe();
+  //   };
+  // }, []);
+
+
   useEffect(() => {
     async function getData() {
       const { data } = await supabase.from('notes').select("*").eq('archived', false);
@@ -43,10 +81,6 @@ export default function Home() {
       const { data } = await supabase.from('notes').select("*").eq('archived', true);
       setGetArchivedNotes(data);
     }
-
-
-
-
 
     const noteChannel = supabase.channel('insert').on('postgres_changes', { event: 'INSERT', schema: 'public', table: 'notes' },
       payload => {
@@ -108,6 +142,8 @@ export default function Home() {
       console.log("loop");
     }
   }, [selectedArea]);
+
+  
 
   return (
     <div className={isMobile ? "main-container" : ""}>
@@ -186,5 +222,7 @@ export default function Home() {
       ) : ''}
 
     </div>
+    
   )
+   
 }

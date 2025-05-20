@@ -1,10 +1,16 @@
-import Link from "next/link"
+"use client"
+import Link from "next/link";
+import { login } from "./loginAction";
 import "./login.css"
-import "src/app/globals.css"
+import { useEffect } from "react";
 
-export default function Login() {
+
+export default function LoginPage() {
+ 
+
+  
   return(
-    <div className="container">
+     <div className="container">
       <div className="login-header">
         <div className="login-logo">
           <img src="/images/Feather.svg"/>
@@ -16,9 +22,10 @@ export default function Login() {
         <p>Please log in to continue</p>
       </div>
         <div className="login-body">
+          <form>
           <div>
             <h6>Email Address</h6>
-            <input type="email" placeholder="email@example.com"/>
+            <input type="email" name="email" placeholder="email@example.com"/>
             <span>Please enter a valid email address.</span>
           </div>
           <div>
@@ -26,9 +33,10 @@ export default function Login() {
               <h6>Password</h6>
               <h6>Forgot</h6>
             </div>
-            <input type="password"/>
+            <input name="password" type="password"/>
           </div>
-          <button className="login-btn">Login</button>
+          <button formAction={login} className="login-btn">Login</button>
+          </form>
         <div className="login-footer">
           <h6>Or log in with:</h6>
           <button className="google-flex">
@@ -37,7 +45,7 @@ export default function Login() {
             </svg>
             <h4>Google</h4>
           </button>
-          <h5>No account yet?<Link className="sign-up-btn" href={"/"}> Sign Up</Link></h5>
+          <h5>No account yet?<Link className="sign-up-btn" href={"/signup"}> Sign Up</Link></h5>
         </div>
         </div>
 

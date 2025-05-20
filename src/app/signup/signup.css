@@ -1,0 +1,141 @@
+input {
+  display: block;
+  width: 100%;
+  border-radius: 8px;
+  padding-block: 12px;
+  border: 1px solid rgba(202, 207, 216, 1);
+  outline: none;
+  padding-inline: 16px;
+  caret-color: gray;
+}
+
+input[type="password"] {
+  background: url("/images/show-icon.svg") center no-repeat ;
+  background-position: right 5% center;
+}
+.login-header{
+  text-align: center;
+}
+
+.login-header h2 {
+   color:rgba(14, 18, 27, 1);
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 120%;
+  letter-spacing: -0.5px;
+  margin-block: 16px 8px;
+
+}
+.login-header p {
+  color: rgba(82, 88, 102, 1);
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 130%;
+  letter-spacing: -0.2px;
+  margin-bottom: 24px;
+
+}
+.login-logo{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.login-body h6{
+  color: rgba(14, 18, 27, 1);
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 120%;
+  letter-spacing: -0.2px;
+  margin-bottom: 6px;
+}
+
+
+.login-body span {
+  color: rgba(251, 55, 72, 1);
+  margin-block: 6px 16px;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 140%;
+  letter-spacing: 0%;
+  display: none;
+}
+
+.flex {
+  display: flex;
+  align-items: center;
+  margin-top: 16px;
+  justify-content: space-between;
+}
+
+.flex h6:nth-child(2) {
+  color: rgba(82, 88, 102, 1);
+  text-decoration: underline;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 140%;
+  letter-spacing: 0%;
+}
+
+.login-btn {
+  color: white;
+  background-color: rgba(51, 92, 255, 1);
+  display: block;
+  width: 100%;
+  margin-top: 16px;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 120%;
+  letter-spacing: -0.3px;
+  padding-block: 12.5px;
+  border: none;
+  border-radius: 8px;
+  margin-bottom: 40px;
+}
+
+.login-footer {
+  text-align: center;
+}
+
+.login-footer h6  {
+  color: rgba(82, 88, 102, 1);
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 130%;
+  letter-spacing: -0.2px;
+}
+
+.login-footer h5 {
+  color: rgba(82, 88, 102, 1);
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 130%;
+  letter-spacing: -0.2px;
+}
+.sign-up-btn {
+  color: black !important;
+  font-weight: bolder;
+  margin-left: 5px;
+}
+
+.google-flex {
+  background-color: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  margin-block: 16px 28px;
+  width: 100%;
+  padding-block: 16px 12px;
+  border: 1px solid var(--colors-neutral-300, rgba(202, 207, 216, 1));
+  border-radius: 8px;
+
+  h6 {
+  color: rgba(14, 18, 27, 1);
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 100%;
+  letter-spacing: 0.5px;
+  }
+}
+

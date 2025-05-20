@@ -13,8 +13,7 @@ export default async function handleSignUp(currentState, formData) {
     console.error("Sign-up error:", signUpError);
     return { error: true, message: signUpError.message };
   }
-  const user_id = signUpData.user?.id;
-
+ 
 
   const { data: insertData, error: insertError } = await supabase.from("users").insert([{ id: user_id, email }]);
 
