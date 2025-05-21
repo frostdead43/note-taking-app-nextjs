@@ -37,39 +37,6 @@ export default function Home() {
   const [noteColumnArea, setNoteColumnArea] = useState("all-notes");
   const [isBtnActive, setIsBtnActive] = useState(false);
 
-  // const router = useRouter();
-
-  //   useEffect(() => {
-  //   async function getUser() {
-  //     const { data: { session } } = await supabase.auth.getSession();
-  //     if (session) {
-  //       setLoggedIn(true);
-  //       setUser(session.user.user_metadata);
-  //        console.log(session.user.user_metadata);
-  //     }
-  //   }
-
-  //   getUser();
-
-  //   const { data: authListener } = supabase.auth.onAuthStateChange((event, session) => {
-  //     if (event === 'SIGNED_IN') {
-  //       setLoggedIn(true);
-  //       setUser(session?.user?.user_metadata);
-  //       console.log(user);
-  //       console.log("giris yapildi");
-  //       router.push("/");
-  //     } else if (event === 'SIGNED_OUT') {
-  //       setLoggedIn(false);
-  //       setUser(null);
-  //       router.push("/login");
-  //     }
-  //   });
-
-  //   return () => {
-  //     authListener?.subscription?.unsubscribe();
-  //   };
-  // }, []);
-
 
   useEffect(() => {
     async function getData() {
