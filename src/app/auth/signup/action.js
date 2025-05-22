@@ -4,21 +4,31 @@ import { revalidatePath } from "next/cache"
 import { createClient } from "../../utils/supabase/server"
 
 export async function signup(formData) {
-  const supabase = await createClient()
-  // type-casting here for convenience
-  // in practice, you should validate your inputs
-  const data = {
-    email: formData.get('email'),
-    password: formData.get('password'),
+  const supabase = await createClient();
+
+  const email = formData.get('email');
+  const password = formData.get('password');
+
+  // Önce kullanıcıyı auth ile kaydet
+  const { data: signUpData, error: signUpError } = await supabase.auth.signUp({email,password});
+
+  if (signUpError) {
+    console.log(signUpError.message);
+    redirect('/error');
   }
+
+  const user_id = signUpData.user?.id;
 
   
+  if (user_id) {
+    const { data: insertData, error: insertError } = await supabase.from("users").insert([{ id: user_id, email }]);
 
-
-  const { error } = await supabase.auth.signUp(data);
-  if (error) {
-    redirect('/error')
+    if (insertError) {
+      console.log(insertError.message);
+      
+    }
   }
-  revalidatePath('/')
-  redirect('/auth/login')
+
+  revalidatePath('/');
+  redirect('/auth/login');
 }
