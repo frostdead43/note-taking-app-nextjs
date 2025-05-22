@@ -16,14 +16,14 @@ import Password from "./settings/password/page";
 import ArchivedNotes from "@/components/ArchivedNotes";
 import AllNotes from "@/components/AllNotes";
 import FilteredTagsNotes from "@/components/FilteredTagsNotes";
-import { useRouter } from "next/navigation";
-
+import { redirect } from "next/navigation";
+import { createClient } from "./utils/supabase/client";
 
 export const ScreenSize = createContext(null);
 
 
 export default function Home() {
-  const [isLoggedIn,setLoggedIn] = useState(false)
+  const [isLoggedIn, setLoggedIn] = useState(false)
   const [notes, setNotes] = useState([]);
   const [user, setUser] = useState(null)
   const [screenSize, setScreenSize] = useState(0);
@@ -69,6 +69,18 @@ export default function Home() {
   //     authListener?.subscription?.unsubscribe();
   //   };
   // }, []);
+
+  useEffect(() => {
+    async function checkAuth() {
+      const supabase = await createClient()
+
+      const { data, error } = await supabase.auth.getUser()
+      if (error || !data?.user) {
+        redirect('/auth/login')
+      }
+    }
+    checkAuth()
+  }, []);
 
 
   useEffect(() => {
@@ -143,7 +155,7 @@ export default function Home() {
     }
   }, [selectedArea]);
 
-  
+
 
   return (
     <div className={isMobile ? "main-container" : ""}>
@@ -173,7 +185,7 @@ export default function Home() {
                 <FilteredTagsNotes notes={displayedNotes} screenSize={screenSize} takeDetail={takeDetail} />
               )}
               {noteColumnArea === "archive" && (
-                <ArchivedNotes notes={displayedArchivedNotes} screenSize={screenSize} takeDetail={takeDetail}  />
+                <ArchivedNotes notes={displayedArchivedNotes} screenSize={screenSize} takeDetail={takeDetail} />
               )}
               {noteColumnArea === "settings" && (
                 <Settings screenSize={screenSize} setSelectedArea={setSelectedArea} />
@@ -208,7 +220,7 @@ export default function Home() {
 
         </div>
         <div>
-          {isBtnActive && <BtnGroupColumn noteId={detail?.id} setSelectedArea={setSelectedArea} noteColumnArea={noteColumnArea}/>}
+          {isBtnActive && <BtnGroupColumn noteId={detail?.id} setSelectedArea={setSelectedArea} noteColumnArea={noteColumnArea} />}
         </div>
       </div>
       {isMobile ? (
@@ -222,7 +234,7 @@ export default function Home() {
       ) : ''}
 
     </div>
-    
+
   )
-   
+
 }

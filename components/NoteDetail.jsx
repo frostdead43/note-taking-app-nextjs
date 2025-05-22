@@ -101,12 +101,12 @@ export function NoteDetail({ id, screenSize, setSelectedArea, isMobile }) {
           {!isMobile ? <div>
             <div className="mobil-note-detail">
               <div>
-                <Link href={"/"}><button type="button" className="go-back-btn">Go Back</button></Link>
+                <button type="button" className="go-back-btn"><Link href={"/"}>Go Back</Link></button>
               </div>
               <div className="flex">
                 <img onClick={handleOpenModal} src="../images/delete-icon.svg" />
                 <img onClick={handleOpenArchiveModal} src="../images/archive-icon.svg" />
-                <Link href={"/"}><button type="button" className="cancel-btn">Cancel</button></Link>
+                <button type="button" className="cancel-btn"><Link href={"/"}>Cancel</Link></button>
                 <button type="submit" className="save-btn">Save Note</button>
               </div>
             </div>
@@ -165,13 +165,5 @@ export function NoteDetail({ id, screenSize, setSelectedArea, isMobile }) {
   );
 }
 
-// export function BtnGroupColumn(){
-//  return (
-//   <div className="btn-group-column">
-//    <button></button>
-//    <button onClick={() => handleArchive(id)}></button>
-//   </div>
-//  )
-// }
 
 
