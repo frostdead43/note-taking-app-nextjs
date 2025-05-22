@@ -1,6 +1,18 @@
+"use client"
 import Link from "next/link";
 import { login } from "./action";
 import "./login.css"
+import { supabase } from "../../lib/supabaseClient";
+
+
+ export async function handleGoogleLogin()  {
+    const { data,error } = await supabase.auth.signInWithOAuth({
+      provider: 'google',
+    })
+      console.log(data)
+
+    if (error) console.error(error.message)
+  }
 
 
 export default function LoginPage() {
@@ -35,7 +47,7 @@ export default function LoginPage() {
         </form>
         <div className="login-footer">
           <h6>Or log in with:</h6>
-          <button className="google-flex">
+          <button onClick={handleGoogleLogin} className="google-flex">
             <svg width="25" height="26" viewBox="0 0 25 26" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path fillRule="evenodd" clipRule="evenodd" d="M21.3379 15.2181C21.4459 14.6681 21.4999 14.0881 21.4999 13.5081C21.4999 13.1161 21.4739 12.7341 21.4239 12.3611C21.3869 12.0871 21.1429 11.8881 20.8669 11.8881H13.0619C12.7519 11.8881 12.4999 12.1401 12.4999 12.4501V14.6561C12.4999 14.9661 12.7519 15.2181 13.0619 15.2181H17.3369C17.5129 15.2181 17.6419 15.3981 17.5759 15.5611C16.6409 17.8711 14.1859 19.3871 11.4439 18.8801C9.33793 18.4911 7.61193 16.8211 7.15993 14.7281C6.39293 11.1761 9.07693 8.03814 12.4999 8.03814C13.6219 8.03814 14.6619 8.37514 15.5289 8.95214C15.7609 9.10614 16.0639 9.09114 16.2599 8.89214L17.9619 7.15914C18.1939 6.92214 18.1799 6.52814 17.9159 6.32714C16.4749 5.23114 14.6929 4.56514 12.7549 4.51214C7.88293 4.37714 3.66393 8.33514 3.50493 13.2061C3.33793 18.3141 7.43193 22.5081 12.4999 22.5081C16.8829 22.5081 20.5369 19.3681 21.3379 15.2181Z" fill="#0E121B" />
             </svg>

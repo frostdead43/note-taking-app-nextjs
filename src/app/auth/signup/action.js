@@ -12,11 +12,13 @@ export async function signup(formData) {
     password: formData.get('password'),
   }
 
+  
 
-  const { error } = await supabase.auth.signUp(data)
+
+  const { error } = await supabase.auth.signUp(data);
   if (error) {
     redirect('/error')
   }
-  revalidatePath('/', 'layout')
-  redirect('/')
+  revalidatePath('/')
+  redirect('/auth/login')
 }

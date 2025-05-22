@@ -35,12 +35,11 @@ export default function Settings({ screenSize, setSelectedArea }) {
           </div>
         </Link>
 
-        <Link href={screenSize > 768 ? `#` : `/settings/logout`}>
-          <div className="setting">
+       
+          <div className="setting" style={{"cursor": "pointer"}}>
             <img src="./images/logout-icon.svg" />
             <h5 onClick={handleLogout}>Logout</h5>
           </div>
-        </Link>
 
       </div>
     </div>
