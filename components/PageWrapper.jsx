@@ -1,6 +1,5 @@
 "use client";
 
-// motion'ı m olarak import et (Next.js + Framer Motion daha iyi anlaşsın)
 import { motion, AnimatePresence } from "framer-motion";
 import { usePathname } from "next/navigation";
 
