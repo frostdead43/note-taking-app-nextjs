@@ -14,7 +14,7 @@ export async function signup(formData) {
 
   if (signUpError) {
     console.log(signUpError.message);
-    redirect('/error');
+    return;
   }
 
   const user_id = signUpData.user?.id;

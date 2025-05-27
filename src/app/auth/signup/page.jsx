@@ -8,6 +8,7 @@ export default function SignUp() {
 
   return (
     <div className="container">
+      <div className="login-container">
       <div className="login-header">
         <div className="login-logo">
           <img src="/images/Feather.svg" />
@@ -47,7 +48,7 @@ export default function SignUp() {
         <h5>Already have an account?<Link className="sign-up-btn" href={"/auth/login"}> Login</Link></h5>
 
       </div>
-
+    </div>
     </div>
   )
 }

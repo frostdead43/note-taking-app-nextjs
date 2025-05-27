@@ -19,6 +19,7 @@ export default function LoginPage() {
 
   return (
     <div className="container">
+      <div className="login-container">
       <div className="login-header">
         <div className="login-logo">
           <img src="/images/Feather.svg" />
@@ -56,7 +57,7 @@ export default function LoginPage() {
           <h5>No account yet?<Link className="sign-up-btn" href={"/auth/signup"}> Sign Up</Link></h5>
         </div>
       </div>
-
+    </div>
     </div>
   )
 }
