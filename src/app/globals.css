@@ -152,9 +152,7 @@ hr {
       background-color: rgba(14, 18, 27, 1);
     }
 
-    svg {
-      fill: white;
-    }
+
   }
 
   .tag > h2,
@@ -378,6 +376,59 @@ hr {
   .setting svg path {
     stroke: rgb(44, 43, 43)
   }
+
+  .tags-detail-container h2 {
+    color: white;
+  }
+
+  .flex svg:first-child {
+    fill: rgba(202, 207, 216, 1);
+    stroke: rgba(202, 207, 216, 1);
+  }
+   .flex svg:nth-child(2){
+    fill: rgba(202, 207, 216, 1);
+  }
+
+  .cancel-btn {
+    background-color: transparent;
+    color: rgba(202, 207, 216, 1);
+  }
+
+  .header-2 h2 {
+    color: white;
+  }
+
+  .btn-group-column svg {
+    fill: white;
+    stroke: white;
+  }
+
+  .newnote-area input {
+    background-color: transparent;
+    color: white;
+    outline: none;
+    
+  }
+  
+  .newnote-title input::placeholder {
+    color: white;
+  }
+
+  .note-textarea {
+    color: white;
+    
+  }
+
+ .focus:focus-within {
+   background-color:rgba(35, 37, 48, 1);
+
+
+  }
+
+  .archive-btn:focus-within {
+    background-color:rgba(35, 37, 48, 1);
+  }
+
 
 }
 

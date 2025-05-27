@@ -16,6 +16,7 @@ h2 {
   inset-inline: 85%;
 }
 
+
 .empty-area {
   padding: 8px;
   background-color: rgba(243, 245, 248, 1);
@@ -517,6 +518,20 @@ dialog p {
 
   .login-body {
     padding-inline: 48px;
+  }
+
+  .newnote-area input {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 130%;
+  letter-spacing: -0.2px;
+
+    
+  }
+
+   .newnote-title input::placeholder {
+     font-size: 14px;
+
   }
  
 }
