@@ -1,8 +1,8 @@
 "use client"
 import Link from "next/link";
 import { use, useEffect, useState } from "react";
-import { supabase } from "../../lib/supabaseClient";
 import "./tagDetail.css";
+import { createClient } from "../../utils/supabase/client";
 
 
 export default function Page({ params }) {
@@ -14,6 +14,7 @@ export default function Page({ params }) {
 
   useEffect(() => {
     async function getTagData() {
+      const supabase = await createClient();
       const { data } = await supabase.from("notes").select("*").eq("tags", tag);
       setTagDetails(data);
       console.log(data);
@@ -32,7 +33,7 @@ export default function Page({ params }) {
       <p>All notes with the <span className="black">"{tag}"</span> tag are shown here.</p>
       {tagDetail?.map(x => (
         <Link key={x.title} href={`/notes/${x.id}`}>
-          <div className="new-notes">
+          <div className="new-notes-tag">
             <h3>{x?.title}</h3>
             <h5>{x?.tags}</h5>
           </div>

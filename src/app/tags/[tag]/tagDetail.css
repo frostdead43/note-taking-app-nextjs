@@ -12,7 +12,7 @@
 }
 
 .black {
-  color:rgb(0, 0, 0);
+  color: rgb(0, 0, 0);
 }
 
 .tag-container p {
@@ -24,7 +24,7 @@
   margin-block: 16px;
 }
 
-.new-notes h3 {
+.new-notes-tag h3 {
   color: rgb(0, 76, 255);
   font-size: 16px;
   font-weight: 600;
@@ -32,7 +32,7 @@
   letter-spacing: -0.30000001192092896px;
 }
 
-.new-notes h5 {
+.new-notes-tag h5 {
   display: inline-block;
   color: rgb(0, 76, 255);
   background-color: rgba(224, 228, 234, 1);
@@ -40,7 +40,7 @@
   padding: 2px 6px;
 }
 
-.new-notes h6 {
+.new-notes-tag h6 {
   color: rgba(43, 48, 59, 1);
   font-size: 12px;
   font-weight: 400;

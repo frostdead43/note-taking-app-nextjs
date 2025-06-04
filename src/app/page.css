@@ -16,7 +16,6 @@ h2 {
   inset-inline: 85%;
 }
 
-
 .empty-area {
   padding: 8px;
   background-color: rgba(243, 245, 248, 1);
@@ -28,6 +27,10 @@ h2 {
     font-size: 14px;
     line-height: 130%;
     letter-spacing: -0.2px;
+
+    span {
+      text-decoration: underline;
+    }
   }
 }
 
@@ -76,6 +79,15 @@ h2 {
   display: flex;
   align-items: center;
   gap: 16px;
+}
+
+.archive-column-text {
+  padding-bottom: 16px;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 130%;
+  letter-spacing: -0.2px;
+  color: #2b303b;
 }
 
 .go-back-btn {
@@ -462,8 +474,6 @@ dialog p {
     padding: 0;
   }
 
-  
-
   .menu-bar ul {
     display: none;
   }
@@ -502,12 +512,12 @@ dialog p {
     padding: 20px 12px;
   }
 
- .focus:focus-within {
-   background-color:rgba(243, 245, 248, 1);
+  .focus:focus-within {
+    background-color: rgba(243, 245, 248, 1);
   }
 
   .archive-btn:focus-within {
-    background-color:rgba(243, 245, 248, 1);
+    background-color: rgba(243, 245, 248, 1);
   }
 
   .login-container {
@@ -521,19 +531,13 @@ dialog p {
   }
 
   .newnote-area input {
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 130%;
-  letter-spacing: -0.2px;
-
-    
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 130%;
+    letter-spacing: -0.2px;
   }
 
-   .newnote-title input::placeholder {
-     font-size: 14px;
-
+  .newnote-title input::placeholder {
+    font-size: 14px;
   }
- 
 }
-
-

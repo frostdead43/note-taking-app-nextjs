@@ -4,9 +4,10 @@ import Link from 'next/link'
 import styles from './newNote.css'
 import { createNote } from '../action'
 import { useActionState } from 'react'
+import WideColumnFooter from '@/components/WideColumnFooter';
 
 
-export default function NewNote() {
+export default function NewNote({ setSelectedArea, isMobile }) {
   const [state, formAction, isPending] = useActionState(createNote, false);
 
   const today = new Date().toISOString().split("T")[0];
@@ -19,11 +20,11 @@ export default function NewNote() {
         <div className="newnote-area">
           <div className="newnote-header">
             <div>
-              <Link href="/"><span>Go back</span></Link>
+              {!isMobile && <Link href="/"><span>Go back</span></Link>}
             </div>
             <div className="flex">
-              <Link href="/"><span>Cancel</span></Link>
-              <button type='submit'> Save Note </button>
+              {!isMobile && <Link href="/"><span>Cancel</span></Link>}
+              {!isMobile && <button type='submit'> Save Note </button>}
             </div>
           </div>
           <div className="newnote-title">
@@ -44,6 +45,7 @@ export default function NewNote() {
         <hr />
 
         <textarea className="note-textarea" name="body" required placeholder="Start typing your note here…"></textarea>
+        {isMobile && <WideColumnFooter setSelectedArea={setSelectedArea} />}
       </div>
     </form>
   )

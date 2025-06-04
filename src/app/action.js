@@ -1,20 +1,29 @@
 "use server";
-import { supabase } from "./lib/supabaseClient";
 
-export async function createNote(currentState, formData) {  
+import { redirect } from "next/navigation";  // redirect import edilmeli
+import { createClient } from "./utils/supabase/server";
+
+export async function createNote(currentState, formData) {
+  const supabase = await createClient();
+
+  const { data, error } = await supabase.auth.getUser();
+
+  console.log("Auth data:", data.user.id);
+
+
   const title = formData.get("title");
   const tags = formData.get("tags");
   const body = formData.get("body");
   const created_at = new Date().toISOString().split("T")[0];
 
-  const formObj = { title, tags, body,created_at };
+  const formObj = { title, tags, body, created_at, user_id: data.user.id };
 
-  const { data, error } = await supabase.from("notes").insert([formObj]);
+  const { data: insertData, error: insertError } = await supabase.from("notes").insert([formObj]);
 
-  if (error) {
-    console.error("Insert error:", error);
-    return { error: true, message: error.message };
+  if (insertError) {
+    console.error("Insert error:", insertError);
+    return { error: true, message: insertError.message };
   }
 
-  return { success: true, data };
+  return { success: true, data: insertData };
 }

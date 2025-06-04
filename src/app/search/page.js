@@ -3,8 +3,8 @@ import { useEffect, useState } from "react";
 import "../globals.css"
 import "./search.css"
 import Link from "next/link";
-import { supabase } from "../lib/supabaseClient";
 import { filterNotesBySearch } from "../lib/filterNotes";
+import { createClient } from "../utils/supabase/client";
 
 
 export default function Search() {
@@ -16,6 +16,7 @@ export default function Search() {
 
   useEffect(() => {
     async function getSearchData() {
+      const supabase = await createClient();
       const { data } = await supabase.from('notes').select("*");
       setSearchNotes(data);
       console.log(data);
@@ -29,14 +30,7 @@ export default function Search() {
     console.log(e.target.value);
   }
 
-  // const lowerSearch = search.toLocaleLowerCase("tr");
-  // const filterSearch = searchNotes.filter(x => {
-  //   const find =
-  //     x.title.toLocaleLowerCase("tr").includes(lowerSearch) ||
-  //     x.tags.toLocaleLowerCase("tr").includes(lowerSearch)
-  //   console.log(find);
-  //   return find;
-  // });
+
 
 
 

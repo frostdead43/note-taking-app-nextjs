@@ -1,5 +1,5 @@
 "use client";
-import { createContext, useEffect, useState, useContext } from "react";
+import { createContext, useEffect, useState, useContext, use } from "react";
 import "./page.css"
 import Link from "next/link";
 import { supabase } from "./lib/supabaseClient";
@@ -38,45 +38,107 @@ export default function Home() {
   const [isBtnActive, setIsBtnActive] = useState(false);
 
 
-  useEffect(() => {
-    async function checkAuth() {
-      const supabase = await createClient()
-
-      const { data, error } = await supabase.auth.getUser()
-      if (error || !data?.user) {
-        redirect('/auth/login')
-      }
-    }
-    checkAuth()
-  }, []);
 
 
   useEffect(() => {
     async function getData() {
-      const { data } = await supabase.from('notes').select("*").eq('archived', false);
-      setNotes(data);
+      const supabase = await createClient();
+
+      const { data: { user }, error: userError } = await supabase.auth.getUser();
+
+      if (userError || !user) {
+        redirect('/auth/login')
+      }
+
+      const { data, error } = await supabase.from('notes').select("*").eq('user_id', user.id).eq('archived', false);
+
+      if (error) {
+        console.error("Notları alırken hata:", error);
+      }
+      else {
+        console.log("Notlar:", data)
+        setNotes(data)
+      };
     }
+
+
+
 
     async function getArchive() {
-      const { data } = await supabase.from('notes').select("*").eq('archived', true);
-      setGetArchivedNotes(data);
+      const supabase = await createClient();
+
+      const {
+        data: { user },
+      } = await supabase.auth.getUser();
+
+      const { data, error } = await supabase
+        .from('notes')
+        .select("*")
+        .eq('user_id', user.id)
+        .eq('archived', true);
+
+      if (error) {
+        console.error("Arşivli notları alırken hata:", error);
+      }
+      else {
+        console.log("arşiv:", data)
+        setGetArchivedNotes(data)
+      };
     }
 
-    const noteChannel = supabase.channel('insert').on('postgres_changes', { event: 'INSERT', schema: 'public', table: 'notes' },
-      payload => {
-        console.log(payload.new);
-        setNotes(curr => [...curr, payload.new]);
-        console.log(notes);
-      }
-    ).subscribe();
+    const supabase = createClient();
+    const channel = supabase.channel('notes-realtime')
+      .on('postgres_changes', {
+        event: '*',
+        schema: 'public',
+        table: 'notes',
+      }, (payload) => {
+        const note = payload.new;
+        const isArchived = note?.archived;
+
+        if (payload.eventType === 'INSERT') {
+          setNotes(prev => {
+            const alreadyExists = prev.some(n => n.id === note.id);
+            return (!isArchived && !alreadyExists) ? [...prev, note] : prev;
+          });
+          setGetArchivedNotes(prev => {
+            const alreadyExists = prev.some(n => n.id === note.id);
+            return (isArchived && !alreadyExists) ? [...prev, note] : prev;
+          });
+        }
+
+        if (payload.eventType === 'UPDATE') {
+          if (isArchived) {
+            setNotes(prev => prev.filter(n => n.id !== note.id));
+            setGetArchivedNotes(prev => {
+              const exists = prev.some(n => n.id === note.id);
+              return exists ? prev.map(n => n.id === note.id ? note : n) : [...prev, note];
+            });
+          } else {
+            setGetArchivedNotes(prev => prev.filter(n => n.id !== note.id));
+            setNotes(prev => {
+              const exists = prev.some(n => n.id === note.id);
+              return exists ? prev.map(n => n.id === note.id ? note : n) : [...prev, note];
+            });
+          }
+        }
+
+
+        if (payload.eventType === 'DELETE') {
+          setNotes(prev => prev.filter(n => n.id !== payload.old.id));
+          setGetArchivedNotes(prev => prev.filter(n => n.id !== payload.old.id));
+        }
+      })
+      .subscribe();
+
     getData();
     getArchive();
-    console.log("rendered");
 
     return () => {
-      supabase.removeChannel(noteChannel);
-    }
-  }, [])
+      supabase.removeChannel(channel);
+    };
+  }, []);
+
 
   useEffect(() => {
     function handleResize() {
@@ -119,9 +181,18 @@ export default function Home() {
   useEffect(() => {
     if (selectedArea === null) {
       setIsBtnActive(false);
-      console.log("loop");
+
     }
   }, [selectedArea]);
+
+  useEffect(() => {
+    if (noteColumnArea === "filtered-tags" && holdTag) {
+      const archivedNotes = getArchivedNotes.filter(x => x.tags === holdTag);
+      const normalNotes = notes.filter(x => x.tags === holdTag);
+      const all = [...archivedNotes, ...normalNotes];
+      setAllNotes(all);
+    }
+  }, [notes, getArchivedNotes]);
 
 
 
@@ -139,18 +210,23 @@ export default function Home() {
 
         </div>
         <div className="notes-column">
-          {notes.length === 0 ? (
-            <div className="empty-area">
-              <p>You don’t have any notes yet. Start a new note to capture your thoughts and ideas.</p>
-            </div>
+
+          {notes.length === 0 && noteColumnArea === "all-notes" ? (
+            <>
+              <button onClick={() => setSelectedArea("new-note")} className="create-note-btn">+ Create New Note</button>
+              <div className="empty-area">
+                <p>You don’t have any notes yet. Start a new note to capture your thoughts and ideas.</p>
+              </div>
+            </>
           ) : (
             <>
               <button onClick={() => setSelectedArea("new-note")} className="create-note-btn">+ Create New Note</button>
+
               {noteColumnArea === "all-notes" && (
                 <AllNotes notes={displayedNotes} screenSize={screenSize} takeDetail={takeDetail} />
               )}
               {noteColumnArea === "filtered-tags" && (
-                <FilteredTagsNotes notes={displayedNotes} screenSize={screenSize} takeDetail={takeDetail} />
+                <FilteredTagsNotes notes={displayedNotes} screenSize={screenSize} takeDetail={takeDetail} setNoteColumnArea={setNoteColumnArea} />
               )}
               {noteColumnArea === "archive" && (
                 <ArchivedNotes notes={displayedArchivedNotes} screenSize={screenSize} takeDetail={takeDetail} />
@@ -160,6 +236,7 @@ export default function Home() {
               )}
             </>
           )}
+
 
 
           <Link href="newNote">
@@ -173,7 +250,7 @@ export default function Home() {
             <NoteDetail id={detail?.id} isMobile={isMobile} setSelectedArea={setSelectedArea} />
           }
           {selectedArea === "new-note" &&
-            <NewNote id={detail?.id} screenSize={screenSize} />
+            <NewNote id={detail?.id} isMobile={isMobile} setSelectedArea={setSelectedArea} />
           }
           {selectedArea === "color" &&
             <Theme />
@@ -188,14 +265,14 @@ export default function Home() {
 
         </div>
         <div>
-          {isBtnActive && <BtnGroupColumn noteId={detail?.id} setSelectedArea={setSelectedArea} noteColumnArea={noteColumnArea} />}
+          {isBtnActive && <BtnGroupColumn noteId={detail?.id} setSelectedArea={setSelectedArea} notes={[...notes, ...getArchivedNotes]} />}
         </div>
       </div>
       {isMobile ? (
         <ScreenSize.Provider value={screenSize}>
           <div className="column-group">
             <NavigationDesktop setSelectedArea={setSelectedArea} setNoteColumnArea={setNoteColumnArea} />
-            <Tags setSelectedArea={setSelectedArea} takeTagsName={takeTagsName} />
+            <Tags setSelectedArea={setSelectedArea} takeTagsName={takeTagsName} notes={notes} />
           </div>
 
         </ScreenSize.Provider>

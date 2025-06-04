@@ -1,7 +1,14 @@
-
+"use client";
 import Link from "next/link";
+import { useEffect } from "react";
 
-export default function FilteredTagsNotes({ notes, screenSize, takeDetail }) {
+export default function FilteredTagsNotes({ notes, screenSize, takeDetail, setNoteColumnArea }) {
+  useEffect(() => {
+    if (notes.length === 0) {
+      setNoteColumnArea("all-notes");
+    }
+  }, [notes]);
+
   return (
     <>
       {notes.map(note => (
