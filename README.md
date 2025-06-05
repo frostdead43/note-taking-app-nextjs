@@ -31,8 +31,9 @@ After the user registers and logs into the application, they can:
 
 ## 📷 Preview
 
-![Note Taking App Preview for Pc](../images/screenshots/preview-pc-ss.png)
+## Preview Menu
+(/images/screenshots/preview-pc-ss.png)
 
-![Note Taking App Preview for Mobile](../images/screenshots/preview-mobile-ss.png)
+![preview](images/screenshots/preview-mobile-ss.png)
 
 > Make sure to replace the image path (`./images/preview.png`) with the correct one in your project.
