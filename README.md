@@ -13,8 +13,8 @@ After the user registers and logs into the application, they can:
 - 🗂️ Send notes to the archive  
 - 📝 Edit notes  
 - ❌ Delete notes
-- 🔎 search and tag notes
-- 🎨 personalise theme and font
+- 🔎 Search and tag notes
+- 🎨 Personalise theme and font
  
 
 ---
