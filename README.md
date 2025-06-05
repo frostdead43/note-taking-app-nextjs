@@ -53,7 +53,7 @@ After the user registers and logs into the application, they can:
 ![notedetail-pc-ss](https://github.com/user-attachments/assets/f864b079-b6db-438e-a83d-7e513ac63eb9)
 ![notedetail-mobile-ss](https://github.com/user-attachments/assets/4aa55c05-ee72-41dc-9f5c-f4e1644844f6)
 
--After adding a new note, the user can go to the detail of this note and update, delete, archive and unarchive this detail. These operations are controlled on Supabase.
+- After adding a new note, the user can go to the detail of this note and update, delete, archive and unarchive this detail. These operations are controlled on Supabase.
 
 ### Login-Signup
 ![login-pc-ss](https://github.com/user-attachments/assets/aa882154-d14d-4d28-ae66-6e9e37da7edb)
@@ -71,13 +71,13 @@ After the user registers and logs into the application, they can:
 ![search-pc-ss](https://github.com/user-attachments/assets/5b651b8d-e311-4af8-9477-f072d7181af0)
 ![search-mobile-ss](https://github.com/user-attachments/assets/45848a7b-0cab-4ce5-a3ec-c93c748c4e00)
 
--You can search your notes using the search input. You can find the note you are looking for with title, tags and date.
+- You can search your notes using the search input. You can find the note you are looking for with title, tags and date.
 
 ### Tags
 
 ![tags-mobile-ss](https://github.com/user-attachments/assets/de08bdb8-dd17-4c39-afdd-0d6675927eb4)
 
--Each note has a tag. Thanks to these tags, the user can categorise more easily
+- Each note has a tag. Thanks to these tags, the user can categorise more easily
 
 ### Setting
 
