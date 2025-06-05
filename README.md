@@ -102,5 +102,5 @@ After the user registers and logs into the application, they can:
 ## Mehmet Akif Küçükyılmaz
 - [GitHub](https://github.com/frostdead43)
 - [LinkedIn](www.linkedin.com/in/mehmet-akif-küçükyılmaz43)
-- 
+
 
