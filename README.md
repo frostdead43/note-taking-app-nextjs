@@ -32,7 +32,7 @@ After the user registers and logs into the application, they can:
 ## 📷 Preview
 
 ## Preview Menu
-![preview](images/screenshots/preview-mobile-ss.png)
+![preview-mobile-ss](https://github.com/user-attachments/assets/09392af6-812e-4df5-baa4-5d483389ddf3)
 
 ![preview](images/screenshots/preview-mobile-pc.png)
 
