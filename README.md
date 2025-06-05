@@ -32,8 +32,11 @@ After the user registers and logs into the application, they can:
 ## 📷 Preview
 
 ## Preview Menu
-!["./images/screenshots/preview-pc-ss.png"]
-
 ![preview](images/screenshots/preview-mobile-ss.png)
+
+![preview](images/screenshots/preview-mobile-pc.png)
+
+
+
 
 > Make sure to replace the image path (`./images/preview.png`) with the correct one in your project.
